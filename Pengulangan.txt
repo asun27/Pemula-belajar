@@ -1,0 +1,7 @@
+<div class="grid_12" ng-repeat="list in listKebidan | orderBy:'id'" style="margin-top: 10px;">
+                <div class="grid_12" ng-repeat="jawab in list.detail | orderBy:'id'">
+                    <div ng-switch on="jawab.type">
+                    
+                    </div>
+                  </div>
+                </div>
