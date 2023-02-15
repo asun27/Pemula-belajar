@@ -1,9 +1,50 @@
 -Html pengulangan
 
-<div class="grid_12" ng-repeat="list in listKebidan | orderBy:'id'" style="margin-top: 10px;">
-                <div class="grid_12" ng-repeat="jawab in list.detail | orderBy:'id'">
-                    <div ng-switch on="jawab.type">
-                    
-                    </div>
-                  </div>
-                </div>
+<div class="grid_12" ng-repeat="list in listHeadEmr | orderBy:'id'" style="margin-top: 10px;">
+                 <div class="grid_12" ng-repeat="jawab in list.detail | orderBy:'id'">
+                     <div ng-switch on="jawab.type">
+                         <div class="grid_6" ng-switch-when="datetime" style="margin-top: 10px;">
+                             <div class="grid_12">
+                                 <label c-label item="item">{{jawab.caption}}</label>
+                             </div>
+                             <div class="grid_6">
+                                 <input style="width: 100%" k-ng-model="item.obj[jawab.id]" kendo-datetimepicker 
+                                 placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                             </div>
+                         </div>
+                         <div class="grid_6" ng-switch-when="combobox" style="margin-top: 10px;">
+                             <div class="grid_12">
+                                 <label c-label item="item"> {{jawab.caption}}</label>
+                             </div>
+                             <div class="grid_6">
+                                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[jawab.id]"
+                                 k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                 k-auto-bind="false" k-data-source="listRuangan" />
+                             </div>
+                         </div>
+                         <div class="grid_12" ng-switch-when="textarea" style="margin-top: 10px;">
+                         <div class="grid_12">
+                             <label c-label item="item">{{jawab.caption}}</label>
+                         </div>
+                         <div class="grid_6">
+                             <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" class="k-textbox" 
+                             ng-model="item.obj[jawab.id]"></textarea>
+                         </div>
+                         </div>
+                         <div class="grid_12" ng-switch-when="textbox">
+                             <label class="k-label">
+                             &nbsp;{{jawab.nama}}</label>
+                             <input style="width: 40%" class="k-textbox" ng-model="item.obj[jawab.id]" type="text">
+                         </div>
+                         <div class="grid_12" ng-switch-when="label" style="margin-top: 10px;">
+                             <label c-label item="item">{{jawab.caption}}</label>
+                         </div>
+                         <div class="grid_3" ng-switch-when="checkbox">
+                             <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"
+                             ng-model="item.obj[jawab.id]">
+                             <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                             &nbsp;{{jawab.nama}}</label>
+                         </div>
+                     </div>
+                 </div>
+             </div>
