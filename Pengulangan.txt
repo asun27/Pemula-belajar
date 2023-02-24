@@ -48,7 +48,7 @@ Textbox contoh sourcode:
     <label c-label item="item">{{jawab.caption}}</label>
 </div>
 
-Textbox contoh sourcode:
+checkbox contoh sourcode:
 <div class="grid_3" ng-switch-when="checkbox">
     <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"
       ng-model="item.obj[jawab.id]">
