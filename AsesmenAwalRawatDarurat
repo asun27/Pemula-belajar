@@ -1,0 +1,1670 @@
+html code 
+<style type="text/css">
+    fieldset {
+        border-radius: 5px;
+        border: 1px solid #228be6;
+    }
+
+    .k-slider-horizontal {
+        display: inline-block;
+        float: left;
+        width: 450px;
+
+        height: 26px;
+    }
+
+    .k-slider {
+
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 1%;
+        margin-bottom: 5%;
+        display: inline-block;
+    }
+
+    .activeBtn {
+        background-color: #10c4b2;
+        color: #ffffff;
+    }
+
+    legend b {
+        color: #41abf2;
+    }
+
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-color: #aabcfe;
+    }
+
+    .tg td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #aabcfe;
+        color: #669;
+        background-color: #e8edff;
+    }
+
+    .tg th {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #aabcfe;
+        color: #039;
+        background-color: #b9c9fe;
+    }
+
+    .tg .tg-yw4l {
+        vertical-align: top
+    }
+
+
+    .rowstyle {
+        border-bottom: 1px dashed lightblue
+    }
+
+    .footer {
+        text-align: center;
+        font-size: 120%;
+        font-weight: 700;
+        margin-bottom: 20px
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #929191;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+    }
+    hr {
+    border: 1px dashed #cccccc;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: 100%;
+    }
+
+</style>
+
+<div class="grid_12">
+    <div class="grid_12">
+        <div class="panel panel-default container_12">
+            <div class="panel-heading" c-translate>Asesmen Awal Rawat Darurat</div>
+        </div>
+
+    <div class="grid_12">
+        <fieldset style="margin-top: 10px; ">
+            <legend><b>Asesmen Awal Rawat Darurat</b></legend>
+                <div class="grid_12" style="margin-top: 10px;">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Tanggal & Jam Masuk"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input style="width: 50%" k-ng-model="item.obj[22041594]" kendo-datetimepicker
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
+                                parsedate="yyyy-MM-dd HH:mm" />
+                        </div>
+                    </div>
+                    <div class="grid_6" style="margin-left: 0px;">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Tanggal & Jam Diperiksa"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input style="width: 50%" k-ng-model="item.obj[22041595]" kendo-datetimepicker
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
+                                parsedate="yyyy-MM-dd HH:mm" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12" ng-repeat="list in listMasuk | orderBy:'id'" style="padding: 5pt 10pt">
+                        <b style="margin-left:-10px; top: -10px;">{{list.nama}}</b>
+                        <div class="grid_12" style="padding: 5pt">
+                            <div ng-repeat="jawab in list.detail | orderBy:'id'">
+                                <div ng-switch on="jawab.type">
+                                    <div class="grid_3" ng-switch-when="checkbox">
+                                        <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"
+                                            ng-model="item.obj[jawab.id]">
+                                        <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                            &nbsp;{{jawab.nama}}</label>
+                                    </div>
+                                    <div class="grid_3" style="margin-top: -24px; margin-left: -23px;" ng-switch-when="textbox">
+                                        <div class="grid_12">
+                                            <label c-label item="item">{{jawab.caption}}</label>
+                                        </div>
+                                        <div class="grid_12 parentKeteranganFieldTambahan" style="width: 100%;">
+                                            <input c-text-box type="text" filter="" class="k-textbox"
+                                            ng-model="item.obj[jawab.id]" />
+                                            <label class="keteranganFieldTambahan"
+                                            style="margin-top: 5px;margin-right: 30px">{{jawab.nama}}</label>
+                                        </div>
+                                    </div> 
+                                    <div class="grid_4" ng-switch-when="datetime" style="margin-top: -15px;">
+                                        <div class="grid_12">
+                                            <input style="width: 50%" k-ng-model="item.obj[jawab.id]" kendo-datetimepicker
+                                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
+                                                parsedate="yyyy-MM-dd HH:mm" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_10" ng-switch-when="textarea">
+                                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" id="item.obj{{jawab.id}}"
+                                        ng-model="item.obj[jawab.id]" style="height: 80px; width: 98%; "
+                                        placeholder="Data Obyektif "></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div style="text-align: center; margin-top: 10px; font-size: 20px">
+                <b>ANATOMI TUBUH MANUSIA</b>
+            </div>
+            <div style="color: crimson;text-align: center">
+                <b>Centang bagian yang dilakukan pemeriksaan</b>
+            </div>
+            <div class="grid_12" style="margin-top: 10px;">
+                <div class="grid_6">
+                    <img src="../app/images/emr/bodyboy.png" style="width: 100%; opacity: 0.8;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-660px; margin-left:128px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041600]"
+                        ng-model="item.obj[22041600]">
+                        <label class="k-checkbox-label" for="item.obj[22041600]">
+                        &nbsp;<b>Frontal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-640px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041601]"
+                        ng-model="item.obj[22041601]">
+                        <label class="k-checkbox-label" for="item.obj[22041601]">
+                        &nbsp;<b>Orbital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-625px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041602]"
+                        ng-model="item.obj[22041602]">
+                        <label class="k-checkbox-label" for="item.obj[22041602]">
+                        &nbsp;<b>Nasal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-608px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041603]"
+                        ng-model="item.obj[22041603]">
+                        <label class="k-checkbox-label" for="item.obj[22041603]">
+                        &nbsp;<b>Oral</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-592px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041604]"
+                        ng-model="item.obj[22041604]">
+                        <label class="k-checkbox-label" for="item.obj[22041604]">
+                        &nbsp;<b>Mental</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-575px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041605]"
+                        ng-model="item.obj[22041605]">
+                        <label class="k-checkbox-label" for="item.obj[22041605]">
+                        &nbsp;<b>Cervical</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-540px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041751]"
+                        ng-model="item.obj[22041751]">
+                        <label class="k-checkbox-label" for="item.obj[22041751]">
+                        &nbsp;<b>Sternal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-523px; margin-left:80px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041606]"
+                        ng-model="item.obj[22041606]">
+                        <label class="k-checkbox-label" for="item.obj[22041606]">
+                        &nbsp;<b>Axillary</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-505px; margin-left:98px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041607]"
+                        ng-model="item.obj[22041607]">
+                        <label class="k-checkbox-label" for="item.obj[22041607]">
+                        &nbsp;<b>Mammary</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-410px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041608]"
+                        ng-model="item.obj[22041608]">
+                        <label class="k-checkbox-label" for="item.obj[22041608]">
+                        &nbsp;<b>Umbilical</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-385px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041609]"
+                        ng-model="item.obj[22041609]">
+                        <label class="k-checkbox-label" for="item.obj[22041609]">
+                        &nbsp;<b>Pelvic</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-363px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041610]"
+                        ng-model="item.obj[22041610]">
+                        <label class="k-checkbox-label" for="item.obj[22041610]">
+                        &nbsp;<b>Inguinal(Groin)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-325px; margin-left:120px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041611]"
+                        ng-model="item.obj[22041611]">
+                        <label class="k-checkbox-label" for="item.obj[22041611]">
+                        &nbsp;<b>Pubic (Genital)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-560px; margin-left:190px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041612]"
+                        ng-model="item.obj[22041612]">
+                        <label class="k-checkbox-label" for="item.obj[22041612]">
+                        &nbsp;<b>Acromial</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-510px; margin-left:210px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041613]"
+                        ng-model="item.obj[22041613]">
+                        <label class="k-checkbox-label" for="item.obj[22041613]">
+                        &nbsp;<b>Brachial (arm)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-450px; margin-left:220px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041614]"
+                        ng-model="item.obj[22041614]">
+                        <label class="k-checkbox-label" for="item.obj[22041614]">
+                        &nbsp;<b>Antecubital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-400px; margin-left:225px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041615]"
+                        ng-model="item.obj[22041615]">
+                        <label class="k-checkbox-label" for="item.obj[22041615]">
+                        &nbsp;<b>Antebrachial (Forearm)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-348px; margin-left:230px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041616]"
+                        ng-model="item.obj[22041616]">
+                        <label class="k-checkbox-label" for="item.obj[22041616]">
+                        &nbsp;<b>Carpal (Wrist)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-332px; margin-left:245px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041617]"
+                        ng-model="item.obj[22041617]">
+                        <label class="k-checkbox-label" for="item.obj[22041617]">
+                        &nbsp;<b>Pollex</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-315px; margin-left:233px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041618]"
+                        ng-model="item.obj[22041618]">
+                        <label class="k-checkbox-label" for="item.obj[22041618]">
+                        &nbsp;<b>Palmar</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-285px; margin-left:230px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041619]"
+                        ng-model="item.obj[22041619]">
+                        <label class="k-checkbox-label" for="item.obj[22041619]">
+                        &nbsp;<b>Digital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-345px; margin-left:70px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041620]"
+                        ng-model="item.obj[22041620]">
+                        <label class="k-checkbox-label" for="item.obj[22041620]">
+                        &nbsp;<b>Coxal (hib)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-280px; margin-left:100px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041621]"
+                        ng-model="item.obj[22041621]">
+                        <label class="k-checkbox-label" for="item.obj[22041621]">
+                        &nbsp;<b>Femoral (thigh)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-215px; margin-left:105px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041622]"
+                        ng-model="item.obj[22041622]">
+                        <label class="k-checkbox-label" for="item.obj[22041622]">
+                        &nbsp;<b>Patellar</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-170px; margin-left:105px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041623]"
+                        ng-model="item.obj[22041623]">
+                        <label class="k-checkbox-label" for="item.obj[22041623]">
+                        &nbsp;<b>Crural(leg)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-140px; margin-left:120px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041624]"
+                        ng-model="item.obj[22041624]">
+                        <label class="k-checkbox-label" for="item.obj[22041624]">
+                        &nbsp;<b>Fibular or peroneal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-65px; margin-left:120px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041625]"
+                        ng-model="item.obj[22041625]">
+                        <label class="k-checkbox-label" for="item.obj[22041625]">
+                        &nbsp;<b>Tarsal (angkel)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-45px; margin-left:150px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041626]"
+                        ng-model="item.obj[22041626]">
+                        <label class="k-checkbox-label" for="item.obj[22041626]">
+                        &nbsp;<b>Metatarsal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-25px; margin-left:160px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041627]"
+                        ng-model="item.obj[22041627]">
+                        <label class="k-checkbox-label" for="item.obj[22041627]">
+                        &nbsp;<b>Digital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-20px; margin-left:90px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041628]"
+                        ng-model="item.obj[22041628]">
+                        <label class="k-checkbox-label" for="item.obj[22041628]">
+                        &nbsp;<b>Hallux</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-615px; margin-left:445px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041629]"
+                        ng-model="item.obj[22041629]">
+                        <label class="k-checkbox-label" for="item.obj[22041629]">
+                        &nbsp;<b>Otic</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-600px; margin-left:410px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041630]"
+                        ng-model="item.obj[22041630]">
+                        <label class="k-checkbox-label" for="item.obj[22041630]">
+                        &nbsp;<b>Occipital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-580px; margin-left:410px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041631]"
+                        ng-model="item.obj[22041631]">
+                        <label class="k-checkbox-label" for="item.obj[22041631]">
+                        &nbsp;<b>Cervical</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-510px; margin-left:440px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041632]"
+                        ng-model="item.obj[22041632]">
+                        <label class="k-checkbox-label" for="item.obj[22041632]">
+                        &nbsp;<b>Scapular</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-480px; margin-left:413px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041633]"
+                        ng-model="item.obj[22041633]">
+                        <label class="k-checkbox-label" for="item.obj[22041633]">
+                        &nbsp;<b>Vertebral</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-420px; margin-left:440px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041634]"
+                        ng-model="item.obj[22041634]">
+                        <label class="k-checkbox-label" for="item.obj[22041634]">
+                        &nbsp;<b>Lumbar</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-350px; margin-left:413px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041635]"
+                        ng-model="item.obj[22041635]">
+                        <label class="k-checkbox-label" for="item.obj[22041635]">
+                        &nbsp;<b>Sacral</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-330px; margin-left:440px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041636]"
+                        ng-model="item.obj[22041636]">
+                        <label class="k-checkbox-label" for="item.obj[22041636]">
+                        &nbsp;<b>Gluteal</b></label>
+                    </div>
+                    <div class="grid_4" style="margin-top:-310px; margin-left:413px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041637]"
+                        ng-model="item.obj[22041637]">
+                        <label class="k-checkbox-label" for="item.obj[22041637]" >
+                        &nbsp; <b>Perineal (between anus and external genitalia)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-320px; margin-left:320px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041638]"
+                        ng-model="item.obj[22041638]">
+                        <label class="k-checkbox-label" for="item.obj[22041638]">
+                        &nbsp;<b>Metacarpal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-190px; margin-left:385px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041639]"
+                        ng-model="item.obj[22041639]">
+                        <label class="k-checkbox-label" for="item.obj[22041639]">
+                        &nbsp;<b>Popliteal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-150px; margin-left:385px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041640]"
+                        ng-model="item.obj[22041640]">
+                        <label class="k-checkbox-label" for="item.obj[22041640]">
+                        &nbsp;<b>Sural (calf)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-30px; margin-left:400px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041641]"
+                        ng-model="item.obj[22041641]">
+                        <label class="k-checkbox-label" for="item.obj[22041641]">
+                        &nbsp;<b>Calcaneal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-15px; margin-left:390px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041642]"
+                        ng-model="item.obj[22041642]">
+                        <label class="k-checkbox-label" for="item.obj[22041642]">
+                        &nbsp;<b>Plantar</b></label>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <img src="../app/images/emr/bodygril.png" style="width: 100%; opacity: 0.8;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-660px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041643]"
+                        ng-model="item.obj[22041643]">
+                        <label class="k-checkbox-label" for="item.obj[22041643]">
+                        &nbsp;<b>Frontal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-640px; margin-left:100px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041644]"
+                        ng-model="item.obj[22041644]">
+                        <label class="k-checkbox-label" for="item.obj[22041644]">
+                        &nbsp;<b>Orbital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-625px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041645]"
+                        ng-model="item.obj[22041645]">
+                        <label class="k-checkbox-label" for="item.obj[22041645]">
+                        &nbsp;<b>Nasal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-608px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041646]"
+                        ng-model="item.obj[22041646]">
+                        <label class="k-checkbox-label" for="item.obj[22041646]">
+                        &nbsp;<b>Oral</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-592px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041647]"
+                        ng-model="item.obj[22041647]">
+                        <label class="k-checkbox-label" for="item.obj[22041647]">
+                        &nbsp;<b>Mental</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-575px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041648]"
+                        ng-model="item.obj[22041648]">
+                        <label class="k-checkbox-label" for="item.obj[22041648]">
+                        &nbsp;<b>Cervical</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-540px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041649]"
+                        ng-model="item.obj[22041649]">
+                        <label class="k-checkbox-label" for="item.obj[22041649]">
+                        &nbsp;<b>Sternal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-523px; margin-left:70px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041650]"
+                        ng-model="item.obj[22041650]">
+                        <label class="k-checkbox-label" for="item.obj[22041650]">
+                        &nbsp;<b>Axillary</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-505px; margin-left:80px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041651]"
+                        ng-model="item.obj[22041651]">
+                        <label class="k-checkbox-label" for="item.obj[22041651]">
+                        &nbsp;<b>Mammary</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-400px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041652]"
+                        ng-model="item.obj[22041652]">
+                        <label class="k-checkbox-label" for="item.obj[22041652]">
+                        &nbsp;<b>Umbilical</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-380px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041653]"
+                        ng-model="item.obj[22041653]">
+                        <label class="k-checkbox-label" for="item.obj[22041653]">
+                        &nbsp;<b>Pelvic</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-360px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041654]"
+                        ng-model="item.obj[22041654]">
+                        <label class="k-checkbox-label" for="item.obj[22041654]">
+                        &nbsp;<b>Inguinal(Groin)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-330px; margin-left:115px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041655]"
+                        ng-model="item.obj[22041655]">
+                        <label class="k-checkbox-label" for="item.obj[22041655]">
+                        &nbsp;<b>Pubic (Genital)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-560px; margin-left:180px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041656]"
+                        ng-model="item.obj[22041656]">
+                        <label class="k-checkbox-label" for="item.obj[22041656]">
+                        &nbsp;<b>Acromial</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-510px; margin-left:190px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041657]"
+                        ng-model="item.obj[22041657]">
+                        <label class="k-checkbox-label" for="item.obj[22041657]">
+                        &nbsp;<b>Brachial (arm)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-450px; margin-left:200px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041658]"
+                        ng-model="item.obj[22041658]">
+                        <label class="k-checkbox-label" for="item.obj[22041658]">
+                        &nbsp;<b>Antecubital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-400px; margin-left:210px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041659]"
+                        ng-model="item.obj[22041659]">
+                        <label class="k-checkbox-label" for="item.obj[22041659]">
+                        &nbsp;<b>Antebrachial (Forearm)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-348px; margin-left:210px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041660]"
+                        ng-model="item.obj[22041660]">
+                        <label class="k-checkbox-label" for="item.obj[22041660]">
+                        &nbsp;<b>Carpal (Wrist)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-335px; margin-left:240px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041661]"
+                        ng-model="item.obj[22041661]">
+                        <label class="k-checkbox-label" for="item.obj[22041661]">
+                        &nbsp;<b>Pollex</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-320px; margin-left:215px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041662]"
+                        ng-model="item.obj[22041662]">
+                        <label class="k-checkbox-label" for="item.obj[22041662]">
+                        &nbsp;<b>Palmar</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-300px; margin-left:220px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041663]"
+                        ng-model="item.obj[22041663]">
+                        <label class="k-checkbox-label" for="item.obj[22041663]">
+                        &nbsp;<b>Digital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-345px; margin-left:60px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041664]"
+                        ng-model="item.obj[22041664]">
+                        <label class="k-checkbox-label" for="item.obj[22041664]">
+                        &nbsp;<b>Coxal (hib)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-270px; margin-left:90px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041665]"
+                        ng-model="item.obj[22041665]">
+                        <label class="k-checkbox-label" for="item.obj[22041665]">
+                        &nbsp;<b>Femoral (thigh)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-215px; margin-left:90px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041666]"
+                        ng-model="item.obj[22041666]">
+                        <label class="k-checkbox-label" for="item.obj[22041666]">
+                        &nbsp;<b>Patellar</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-170px; margin-left:90px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041667]"
+                        ng-model="item.obj[22041667]">
+                        <label class="k-checkbox-label" for="item.obj[22041667]">
+                        &nbsp;<b>Crural(leg)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-130px; margin-left:110px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041668]"
+                        ng-model="item.obj[22041668]">
+                        <label class="k-checkbox-label" for="item.obj[22041668]">
+                        &nbsp;<b>Fibular or peroneal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-55px; margin-left:110px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041669]"
+                        ng-model="item.obj[22041669]">
+                        <label class="k-checkbox-label" for="item.obj[22041669]">
+                        &nbsp;<b>Tarsal (angkel)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-35px; margin-left:140px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041670]"
+                        ng-model="item.obj[22041670]">
+                        <label class="k-checkbox-label" for="item.obj[22041670]">
+                        &nbsp;<b>Metatarsal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-16px; margin-left:150px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041671]"
+                        ng-model="item.obj[22041671]">
+                        <label class="k-checkbox-label" for="item.obj[22041671]">
+                        &nbsp;<b>Digital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-8px; margin-left:90px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041672]"
+                        ng-model="item.obj[22041672]">
+                        <label class="k-checkbox-label" for="item.obj[22041672]">
+                        &nbsp;<b>Hallux</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-645px; margin-left:450px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041673]"
+                        ng-model="item.obj[22041673]">
+                        <label class="k-checkbox-label" for="item.obj[22041673]">
+                        &nbsp;<b>Otic</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-630px; margin-left:420px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041674]"
+                        ng-model="item.obj[22041674]">
+                        <label class="k-checkbox-label" for="item.obj[22041674]">
+                        &nbsp;<b>Occipital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-610px; margin-left:420px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041675]"
+                        ng-model="item.obj[22041675]">
+                        <label class="k-checkbox-label" for="item.obj[22041675]">
+                        &nbsp;<b>Cervical</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-520px; margin-left:440px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041676]"
+                        ng-model="item.obj[22041676]">
+                        <label class="k-checkbox-label" for="item.obj[22041676]">
+                        &nbsp;<b>Scapular</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-480px; margin-left:418px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041677]"
+                        ng-model="item.obj[22041677]">
+                        <label class="k-checkbox-label" for="item.obj[22041677]">
+                        &nbsp;<b>Vertebral</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-420px; margin-left:440px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041678]"
+                        ng-model="item.obj[22041678]">
+                        <label class="k-checkbox-label" for="item.obj[22041678]">
+                        &nbsp;<b>Lumbar</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-355px; margin-left:410px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041679]"
+                        ng-model="item.obj[22041679]">
+                        <label class="k-checkbox-label" for="item.obj[22041679]">
+                        &nbsp;<b>Sacral</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-335px; margin-left:440px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041680]"
+                        ng-model="item.obj[22041680]">
+                        <label class="k-checkbox-label" for="item.obj[22041680]">
+                        &nbsp;<b>Gluteal</b></label>
+                    </div>
+                    <div class="grid_4" style="margin-top:-325px; margin-left:408px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041681]"
+                        ng-model="item.obj[22041681]">
+                        <label class="k-checkbox-label" for="item.obj[22041681]">
+                        &nbsp; <b>Perineal (between anus and external genitalia)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-340px; margin-left:320px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041682]"
+                        ng-model="item.obj[22041682]">
+                        <label class="k-checkbox-label" for="item.obj[22041682]">
+                        &nbsp;<b>Metacarpal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-190px; margin-left:385px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041683]"
+                        ng-model="item.obj[22041683]">
+                        <label class="k-checkbox-label" for="item.obj[22041683]">
+                        &nbsp;<b>Popliteal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-150px; margin-left:385px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041684]"
+                        ng-model="item.obj[22041684]">
+                        <label class="k-checkbox-label" for="item.obj[22041684]">
+                        &nbsp;<b>Sural (calf)</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-30px; margin-left:400px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041685]"
+                        ng-model="item.obj[22041685]">
+                        <label class="k-checkbox-label" for="item.obj[22041685]">
+                        &nbsp;<b>Calcaneal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-15px; margin-left:390px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041686]"
+                        ng-model="item.obj[22041686]">
+                        <label class="k-checkbox-label" for="item.obj[22041686]">
+                        &nbsp;<b>Plantar</b></label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12" ng-repeat="list in listCara | orderBy:'id'" style="padding: 5pt 10pt">
+                        <b style="margin-left:-10px; top: -10px;">{{list.nama}}</b>
+                        <div class="grid_12" style="padding: 5pt">
+                            <div ng-repeat="jawab in list.detail | orderBy:'id'">
+                                <div ng-switch on="jawab.type">
+                                    <div class="grid_10" ng-switch-when="textarea">
+                                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" id="item.obj{{jawab.id}}"
+                                        ng-model="item.obj[jawab.id]" style="height: 80px; width: 98%; "
+                                        placeholder="Data Obyektif "></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <img src="../app/images/emr/telapaktangan.png" style="width: 100%; opacity: 0.5;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-105px; margin-left:5px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041688]"
+                        ng-model="item.obj[22041688]">
+                        <label class="k-checkbox-label" for="item.obj[22041688]">
+                        &nbsp;<b>Ibu jari</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-165px; margin-left:40px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041689]"
+                        ng-model="item.obj[22041689]">
+                        <label class="k-checkbox-label" for="item.obj[22041689]">
+                        &nbsp;<b>Jari telunjuk</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-180px; margin-left:60px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041690]"
+                        ng-model="item.obj[22041690]">
+                        <label class="k-checkbox-label" for="item.obj[22041690]">
+                        &nbsp;<b>Jari tengah</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-152px; margin-left:80px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041691]"
+                        ng-model="item.obj[22041691]">
+                        <label class="k-checkbox-label" for="item.obj[22041691]">
+                        &nbsp;<b>Jari manis</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-140px; margin-left:100px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041692]"
+                        ng-model="item.obj[22041692]">
+                        <label class="k-checkbox-label" for="item.obj[22041692]">
+                        &nbsp;<b>Jari Kelingking</b></label>
+                    </div>
+                    <div class="grid_4" style="margin-top:-90px; margin-left:180px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041693]"
+                        ng-model="item.obj[22041693]">
+                        <label class="k-checkbox-label" for="item.obj[22041693]">
+                        &nbsp;<b>Dasar telapak tangan</b></label>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <img src="../app/images/emr/tangan.png" style="width: 100%; opacity: 0.5;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-75px; margin-left:5px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041694]"
+                        ng-model="item.obj[22041694]">
+                        <label class="k-checkbox-label" for="item.obj[22041694]">
+                        &nbsp;<b>Sisi tangan</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-112px; margin-left:15px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041695]"
+                        ng-model="item.obj[22041695]">
+                        <label class="k-checkbox-label" for="item.obj[22041695]">
+                        &nbsp;<b>Sisi jari</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-140px; margin-left:30px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041696]"
+                        ng-model="item.obj[22041696]">
+                        <label class="k-checkbox-label" for="item.obj[22041696]">
+                        &nbsp;<b>Sendi</b></label>
+                    </div>
+                    <div class="grid_2" style="margin-top:-80px; margin-left:190px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041697]"
+                        ng-model="item.obj[22041697]">
+                        <label class="k-checkbox-label" for="item.obj[22041697]">
+                        &nbsp;<b>Punggung tangan</b></label>
+                    </div>
+                    <div class="grid_2" style="margin-top:-30px; margin-left:210px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041698]"
+                        ng-model="item.obj[22041698]">
+                        <label class="k-checkbox-label" for="item.obj[22041698]">
+                        &nbsp;<b>Pergelangan tangan</b></label>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <img src="../app/images/emr/kaki.png" style="width: 90%; opacity: 1;margin-left:60px;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-165px; margin-left:80px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041699]"
+                        ng-model="item.obj[22041699]">
+                        <label class="k-checkbox-label" for="item.obj[22041699]">
+                        &nbsp;<b>Sisi jari</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-130px; margin-left:90px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041700]"
+                        ng-model="item.obj[22041700]">
+                        <label class="k-checkbox-label" for="item.obj[22041700]">
+                        &nbsp;<b>Telapak kaki</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-50px; margin-left:90px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041701]"
+                        ng-model="item.obj[22041701]">
+                        <label class="k-checkbox-label" for="item.obj[22041701]">
+                        &nbsp;<b>Tumit</b></label>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <img src="../app/images/emr/kakiats.png" style="width: 85%; opacity: 1;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-92px; margin-left:10px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041702]"
+                        ng-model="item.obj[22041702]">
+                        <label class="k-checkbox-label" for="item.obj[22041702]">
+                        &nbsp;<b>Jari kelingking</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-78px; margin-left:15px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041703]"
+                        ng-model="item.obj[22041703]">
+                        <label class="k-checkbox-label" for="item.obj[22041703]">
+                        &nbsp;<b>Jari manis</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-64px; margin-left:20px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041704]"
+                        ng-model="item.obj[22041704]">
+                        <label class="k-checkbox-label" for="item.obj[22041704]">
+                        &nbsp;<b>Jari tengah</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-50px; margin-left:26px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041705]"
+                        ng-model="item.obj[22041705]">
+                        <label class="k-checkbox-label" for="item.obj[22041705]">
+                        &nbsp;<b>Jari telunjuk</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-38px; margin-left:40px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041706]"
+                        ng-model="item.obj[22041706]">
+                        <label class="k-checkbox-label" for="item.obj[22041706]">
+                        &nbsp;<b>Ibu jari</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-170px; margin-left:80px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041707]"
+                        ng-model="item.obj[22041707]">
+                        <label class="k-checkbox-label" for="item.obj[22041707]">
+                        &nbsp;<b>Mata kaki</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-200px; margin-left:145px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041708]"
+                        ng-model="item.obj[22041708]">
+                        <label class="k-checkbox-label" for="item.obj[22041708]">
+                        &nbsp;<b>Pergelangan kaki</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-140px; margin-left:160px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041709]"
+                        ng-model="item.obj[22041709]">
+                        <label class="k-checkbox-label" for="item.obj[22041709]">
+                        &nbsp;<b>Punggung kaki</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-120px; margin-left:195px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041710]"
+                        ng-model="item.obj[22041710]">
+                        <label class="k-checkbox-label" for="item.obj[22041710]">
+                        &nbsp;<b>Sisi kaki</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-55px; margin-left:163px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041711]"
+                        ng-model="item.obj[22041711]">
+                        <label class="k-checkbox-label" for="item.obj[22041711]">
+                        &nbsp;<b>Sendi</b></label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12" ng-repeat="list in listCara1 | orderBy:'id'" style="padding: 5pt 10pt">
+                        <b style="margin-left:-10px; top: -10px;">{{list.nama}}</b>
+                        <div class="grid_12" style="padding: 5pt">
+                            <div ng-repeat="jawab in list.detail | orderBy:'id'">
+                                <div ng-switch on="jawab.type">
+                                    <div class="grid_10" ng-switch-when="textarea">
+                                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" id="item.obj{{jawab.id}}"
+                                        ng-model="item.obj[jawab.id]" style="height: 80px; width: 98%; "
+                                        placeholder="Data Obyektif "></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <img src="../app/images/emr/kepaladp.png" style="width: 130%; opacity: 0.5;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-300px; margin-left:175px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041713]"
+                        ng-model="item.obj[22041713]">
+                        <label class="k-checkbox-label" for="item.obj[22041713]">
+                        &nbsp;<b>Frontal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-255px; margin-left:140px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041714]"
+                        ng-model="item.obj[22041714]">
+                        <label class="k-checkbox-label" for="item.obj[22041714]">
+                        &nbsp;<b>Orbital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-225px; margin-left:170px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041715]"
+                        ng-model="item.obj[22041715]">
+                        <label class="k-checkbox-label" for="item.obj[22041715]">
+                        &nbsp;<b>Nasal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-210px; margin-left:140px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041718]"
+                        ng-model="item.obj[22041718]">
+                        <label class="k-checkbox-label" for="item.obj[22041718]">
+                        &nbsp;<b>Infraorbital</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-240px; margin-left:210px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041720]"
+                        ng-model="item.obj[22041720]">
+                        <label class="k-checkbox-label" for="item.obj[22041720]">
+                        &nbsp;<b>Zygomatic</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-199px; margin-left:180px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041721]"
+                        ng-model="item.obj[22041721]">
+                        <label class="k-checkbox-label" for="item.obj[22041721]">
+                        &nbsp;<b>Oral</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-165px; margin-left:170px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041723]"
+                        ng-model="item.obj[22041723]">
+                        <label class="k-checkbox-label" for="item.obj[22041723]">
+                        &nbsp;<b>Mental</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-140px; margin-left:170px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041724]"
+                        ng-model="item.obj[22041724]">
+                        <label class="k-checkbox-label" for="item.obj[22041724]">
+                        &nbsp;<b>Omotracheal triangle</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-125px; margin-left:140px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041725]"
+                        ng-model="item.obj[22041725]">
+                        <label class="k-checkbox-label" for="item.obj[22041725]">
+                        &nbsp;<b>Sternocleido mastoid</b></label>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <img src="../app/images/emr/kepalabl.png" style="width: 130%; opacity: 0.5;">
+                    <!-- <div class="grid_12" style="margin-top:-660px; margin-left:0px;">
+                        <label c-label item="item">Cephalic</label>
+                    </div> -->
+                    <div class="grid_12" style="margin-top:-300px; margin-left:175px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041727]"
+                        ng-model="item.obj[22041727]">
+                        <label class="k-checkbox-label" for="item.obj[22041727]">
+                        &nbsp;<b>Parietal region</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-260px; margin-left:230px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041728]"
+                        ng-model="item.obj[22041728]">
+                        <label class="k-checkbox-label" for="item.obj[22041728]">
+                        &nbsp;<b>Temporal region</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-95px; margin-left:100px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041729]"
+                        ng-model="item.obj[22041729]">
+                        <label class="k-checkbox-label" for="item.obj[22041729]">
+                        &nbsp;<b>Posterior cervical region</b></label>
+                    </div>
+                </div>
+                <div class="grid_3" style="margin-left:40px">
+                    <img src="../app/images/emr/head1.png" style="width: 100%; opacity: 0.5;">
+                    <div class="grid_12" style="margin-top:-240px; margin-left:100px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041716]"
+                        ng-model="item.obj[22041716]">
+                        <label class="k-checkbox-label" for="item.obj[22041716]">
+                        &nbsp;<b>Auricular</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-220px; margin-left:130px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041717]"
+                        ng-model="item.obj[22041717]">
+                        <label class="k-checkbox-label" for="item.obj[22041717]">
+                        &nbsp;<b>Infratemporal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-105px; margin-left:80px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22042168]"
+                        ng-model="item.obj[22042168]">
+                        <label class="k-checkbox-label" for="item.obj[22042168]">
+                        &nbsp;<b>Disambiguasi</b></label>
+                    </div>
+                </div>
+                <div class="grid_3" style="margin-left:-40px">
+                    <img src="../app/images/emr/head2.png" style="width: 100%; opacity: 0.5;">
+                    <div class="grid_12" style="margin-top:-178px; margin-left:105px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041719]"
+                        ng-model="item.obj[22041719]">
+                        <label class="k-checkbox-label" for="item.obj[22041719]">
+                        &nbsp;<b>Buccal</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-205px; margin-left:70px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041722]"
+                        ng-model="item.obj[22041722]">
+                        <label class="k-checkbox-label" for="item.obj[22041722]">
+                        &nbsp;<b>Parotidea masseteric</b></label>
+                    </div>
+                    <div class="grid_12" style="margin-top:-80px; margin-left:105px;">
+                        <input type="checkbox" class="k-checkbox" id="item.obj[22041726]"
+                        ng-model="item.obj[22041726]">
+                        <label class="k-checkbox-label" for="item.obj[22041726]">
+                        &nbsp;<b>Lateral cervical</b></label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12" ng-repeat="list in listCaraMasuk | orderBy:'id'" style="padding: 5pt 10pt">
+                        <b style="margin-left:-10px; top: -10px;">{{list.nama}}</b>
+                        <div class="grid_12" style="padding: 5pt">
+                            <div ng-repeat="jawab in list.detail | orderBy:'id'">
+                                <div ng-switch on="jawab.type">
+                                    <div class="grid_3" ng-switch-when="checkbox">
+                                        <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"
+                                            ng-model="item.obj[jawab.id]">
+                                        <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                            &nbsp;{{jawab.nama}}</label>
+                                    </div>
+                                    <div class="grid_3" style="margin-top: -24px; margin-left: -23px;" ng-switch-when="textbox">
+                                        <div class="grid_12">
+                                            <label c-label item="item">{{jawab.caption}}</label>
+                                        </div>
+                                        <div class="grid_12 parentKeteranganFieldTambahan" style="width: 100%;">
+                                            <input c-text-box type="text" filter="" class="k-textbox"
+                                            ng-model="item.obj[jawab.id]" />
+                                            <label class="keteranganFieldTambahan"
+                                            style="margin-top: 5px;margin-right: 30px">{{jawab.nama}}</label>
+                                        </div>
+                                    </div> 
+                                    <div class="grid_4" ng-switch-when="datetime" style="margin-top: -15px;">
+                                        <div class="grid_12">
+                                            <input style="width: 50%" k-ng-model="item.obj[jawab.id]" kendo-datetimepicker
+                                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
+                                                parsedate="yyyy-MM-dd HH:mm" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_10" ng-switch-when="textarea">
+                                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" id="item.obj{{jawab.id}}"
+                                        ng-model="item.obj[jawab.id]" style="height: 80px; width: 98%; "
+                                        placeholder="Data Obyektif "></textarea>
+                                    </div>
+                                    <div class="grid_6" ng-switch-when="combobox">
+                                        <div class="grid_6">
+                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[jawab.id]"
+                                            k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                            k-auto-bind="false" k-data-source="listRuangan" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </fieldset>
+    </div>
+</div>
+<div class="grid_12">
+    <div class="grid_8"></div>
+    <div class="grid_4">
+        <fieldset style="margin-top:10px;border-radius: 10px;height: 220px;">
+            <div style="padding: 20px;">
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Tanggal dan Jam"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model="item.obj[22041748]" kendo-datetimepicker
+                            placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
+                            parsedate="yyyy-MM-dd HH:mm" />
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-top:10px">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Perawat"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22041749]"
+                            k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listPegawai" />
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-top:10px">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Dokter"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22041750]"
+                            k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listPegawai" />
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+        <div class="grid_12">
+            <div ng-include='"../app/module/EMR/TemplateButtonDinamis" '></div>
+        </div>
+    </div>
+</div>
+
+javascript code 
+define(['initialize', 'Configuration'], function (initialize, config) {
+'use strict';
+    var baseTransaksi = config.baseApiBackend;
+    initialize.controller('AsesmenAwalRawatDaruratCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'CacheHelper', 'DateHelper', 'MedifirstService',
+        function ($q, $rootScope, $scope, ModelItem, $state, cacheHelper, dateHelper, medifirstService) {
+
+
+            $scope.noCM = $state.params.noCM;
+            $scope.tombolSimpanVis = true
+            $scope.noRecPap = cacheHelper.get('noRecPap');
+            $scope.totalSkor = 0
+            $scope.totalSkor2 = 0
+            $scope.cc = {}
+            var nomorEMR = '-'
+            $scope.cc.emrfk = 380019
+            var dataLoad = []
+            $scope.item.objcbo= []
+            $scope.isCetakV = true
+            var norecEMR = ''
+            var cacheNomorEMR = cacheHelper.get('cacheNomorEMR');
+            var cacheNoREC = cacheHelper.get('cacheNOREC_EMR');
+            if(cacheNoREC!= undefined){
+                norecEMR = cacheNomorEMR[1]
+            }
+            if (cacheNomorEMR != undefined) {
+                nomorEMR = cacheNomorEMR[0]
+                norecEMR = cacheNomorEMR[1]
+                $scope.cc.norec_emr = nomorEMR
+            }
+            var HttpClient = function () {
+                this.get = function (aUrl, aCallback) {
+                    var anHttpRequest = new XMLHttpRequest();
+                    anHttpRequest.onreadystatechange = function () {
+                        if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                            aCallback(anHttpRequest.responseText);
+                    }
+
+                    anHttpRequest.open("GET", aUrl, true);
+                    anHttpRequest.send(null);
+                }
+            }
+            $scope.cetakPdf = function () {
+                if (norecEMR == '') return
+                var client = new HttpClient();
+                client.get('http://127.0.0.1:1237/printvb/e-rekammedis?cetak-emr-traseprimer&id' + $scope.cc.nocm + '&emr=' + norecEMR + '&view=true', function (response) {
+                    // do something with response
+                });
+            }
+            medifirstService.getPart('emr/get-datacombo-part-pegawai', true, true, 20).then(function (data) {
+                $scope.listPegawai = data
+            })
+            medifirstService.getPart('emr/get-datacombo-part-ruangan-pelayanan', true, true, 20).then(function (data) {
+                $scope.listRuangan = data
+            })
+
+            $scope.listMasuk = [
+                {
+                    "id": 1, "nama": "Awal Rawat Darurat",
+                    "detail": [
+                        { "id": 22041596, "nama": "Allowanamnese", "type": "checkbox" },
+                        { "id": 22041597, "nama": "Autoanamnese", "type": "checkbox" },
+                        { "id": 22041598, "caption": "Nama :", "nama": "", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Anamnesa",
+                    "detail": [
+                        { "id": 22041599, "nama": " ", "type": "textarea" },
+                    ]
+                }
+            ]
+
+            $scope.listCara = [
+                {
+                    "id": 1, "nama": "Jelaskan Detail Pemeriksaan Fisik dari gambar diatas",
+                    "detail": [
+                        { "id": 22041687, "nama": " ", "type": "textarea" },
+                    ]
+                }
+            ]
+            $scope.listCara1 = [
+                {
+                    "id": 1, "nama": "Jelaskan Detail Pemeriksaan Fisik dari gambar diatas",
+                    "detail": [
+                        { "id": 22041712, "nama": " ", "type": "textarea" },
+                    ]
+                }
+            ]
+
+            $scope.listCaraMasuk = [
+                {
+                    "id": 1, "nama": "Jelaskan Detail Pemeriksaan Fisik dari gambar diatas",
+                    "detail": [
+                        { "id": 22041730, "nama": " ", "type": "textarea" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Pemeriksaan Penunjang (EKG/Laboratorium/Rontgen/CT Scan/Lainnya)",
+                    "detail": [
+                        { "id": 22041731, "nama": " ", "type": "textarea" },
+                    ]
+                },
+                {
+                    "id": 3, "nama": "Diagnosa Kerja",
+                    "detail": [
+                        { "id": 22041732, "nama": " ", "type": "textarea" },
+                    ]
+                },
+                {
+                    "id": 4, "nama": "Terapi/Tindakan/Konsul",
+                    "detail": [
+                        { "id": 22041733, "nama": " ", "type": "textarea" },
+                    ]
+                },
+                {
+                    "id": 5, "nama": "Kriteria Discharge Planing",
+                    "detail": [
+                        { "id": 22041734, "nama": "Ya", "type": "checkbox" },
+                        { "id": 22041735, "nama": "Tidak", "type": "checkbox" },
+                    ]
+                },
+                {
+                    "id": 6, "nama": "Isi apabila jawaban Ya:",
+                    "detail": [
+                        { "id": 22041736, "nama": " ", "type": "textarea" },
+                    ]
+                },
+                {
+                    "id": 7, "nama": "Keluar dari IGD :",
+                    "detail": [
+                        { "id": 22041737, "nama": " ", "type": "datetime" },
+                    ]
+                },
+                {
+                    "id": 8, "nama": "Status Medik",
+                    "detail": [
+                        { "id": 22041738, "nama": "Gawat Darurat", "type": "checkbox" },
+                        { "id": 22041739, "nama": "Gawat Tidak Darurat", "type": "checkbox" },
+                        { "id": 22041740, "nama": "Darurat Tidak Gawat", "type": "checkbox" },
+                        { "id": 22041741, "nama": "Tidak Gawat & Darurat", "type": "checkbox" },
+                    ]
+                },
+                {
+                    "id": 9, "nama": "Rencana Tindak Lanjut",
+                    "detail": [
+                        { "id": 22041742, "nama": "KRS", "type": "checkbox" },
+                        { "id": 22041743, "nama": "MRS", "type": "checkbox" },
+                        { "id": 22041744, "nama": "Pulang Paksa", "type": "checkbox" },
+                        { "id": 22041745, "nama": "D.O.A", "type": "checkbox" },
+                    ]
+                },
+                {
+                    "id": 10, "nama": "Pindah Ruangan",
+                    "detail": [
+                        { "id": 22041746, "nama": "", "type": "combobox" },
+                    ]
+                },
+                {
+                    "id": 11, "nama": "Lain-Lain",
+                    "detail": [
+                        { "id": 22041747, "nama": " ", "type": "textarea" },
+                    ]
+                },
+                
+            ]
+           
+
+            var cacheNomorEMR = cacheHelper.get('cacheNomorEMR');
+            if (cacheNomorEMR != undefined) {
+                nomorEMR = cacheNomorEMR[0]
+                $scope.cc.norec_emr = nomorEMR
+            }
+
+            // var chacePeriode = cacheHelper.get('cacheHeader');
+            // if (chacePeriode != undefined) {
+
+            //     chacePeriode.umur = dateHelper.CountAge(new Date(chacePeriode.tgllahir), new Date());
+            //     var bln = chacePeriode.umur.month,
+            //         thn = chacePeriode.umur.year,
+            //         day = chacePeriode.umur.day
+
+
+            //     chacePeriode.umur = thn + 'thn ' + bln + 'bln ' + day + 'hr '
+            //     $scope.cc.nocm = chacePeriode.nocm
+            //     $scope.cc.namapasien = chacePeriode.namapasien;
+            //     $scope.cc.jeniskelamin = chacePeriode.jeniskelamin;
+            //     $scope.cc.tgllahir = chacePeriode.tgllahir;
+            //     $scope.cc.umur = chacePeriode.umur;
+            //     $scope.cc.alamatlengkap = chacePeriode.alamatlengkap;
+            //     $scope.cc.notelepon = chacePeriode.notelepon;
+
+            // }
+            var chacePeriode = cacheHelper.get('cacheRekamMedis');
+            if (chacePeriode != undefined) {
+                $scope.cc.nocm = chacePeriode[0]
+                $scope.cc.namapasien = chacePeriode[1]
+                $scope.cc.jeniskelamin = chacePeriode[2]
+                $scope.cc.noregistrasi = chacePeriode[3]
+                $scope.cc.umur = chacePeriode[4]
+                $scope.cc.kelompokpasien = chacePeriode[5]
+                $scope.cc.tglregistrasi = chacePeriode[6]
+                $scope.cc.norec = chacePeriode[7]
+                $scope.cc.norec_pd = chacePeriode[8]
+                $scope.cc.objectkelasfk = chacePeriode[9]
+                $scope.cc.namakelas = chacePeriode[10]
+                $scope.cc.objectruanganfk = chacePeriode[11]
+                $scope.cc.namaruangan = chacePeriode[12]
+                $scope.cc.DataNoregis = chacePeriode[12]
+                if (nomorEMR == '-') {
+                    $scope.cc.norec_emr = '-'
+                } else {
+                    $scope.cc.norec_emr = nomorEMR
+                }
+            }
+            var chekedd = false
+           if(nomorEMR!='-'){
+               cacheHelper.set('cacheEMR_TRIASE_PRIMER', nomorEMR)
+           }
+            medifirstService.get("emr/get-emr-transaksi-detail?noemr=" + nomorEMR + "&emrfk=" + $scope.cc.emrfk, true).then(function (dat) {
+                $scope.item.obj = []
+                $scope.item.obj2 = []
+                $scope.item.obj[9016]=$scope.now
+                dataLoad = dat.data.data
+                for (var i = 0; i <= dataLoad.length - 1; i++) {
+                    if (parseFloat($scope.cc.emrfk) == dataLoad[i].emrfk) {
+
+                        if (dataLoad[i].type == "textbox") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                        }
+                        if (dataLoad[i].type == "checkbox") {
+                            chekedd = false
+                            if (dataLoad[i].value == '1') {
+                                chekedd = true
+                            }
+                            $scope.item.obj[dataLoad[i].emrdfk] = chekedd
+                            if (dataLoad[i].emrdfk >= 5046 && dataLoad[i].emrdfk <= 5051 && chekedd) {
+                                $scope.getSkalaNyeri(1, { descNilai: dataLoad[i].reportdisplay })
+                            }
+                            if (dataLoad[i].emrdfk >= 5053 && dataLoad[i].emrdfk <= 5084 && dataLoad[i].reportdisplay != null) {
+                                var datass = { id: dataLoad[i].emrdfk, descNilai: dataLoad[i].reportdisplay }
+                                $scope.getSkor2(datass)
+                            }
+                            if (dataLoad[i].emrdfk >= 5085 && dataLoad[i].emrdfk <= 5093 && dataLoad[i].reportdisplay != null) {
+                                var datass = { id: dataLoad[i].emrdfk, descNilai: dataLoad[i].reportdisplay }
+                                $scope.getSkorNutrisi(datass)
+                            }
+
+
+                        }
+
+                        if (dataLoad[i].type == "datetime") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                        }
+                        if (dataLoad[i].type == "time") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                        }
+                        if (dataLoad[i].type == "date") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                        }
+
+                        if (dataLoad[i].type == "checkboxtextbox") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                            $scope.item.obj2[dataLoad[i].emrdfk] = true
+                        }
+                        if (dataLoad[i].type == "textarea") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                        }
+                        if (dataLoad[i].type == "combobox") {
+                            var str = dataLoad[i].value
+                            var res = str.split("~");
+                            // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                            $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }
+
+                        }
+                    }
+
+                }
+            })
+            $scope.$watch('item.obj[5041]', function (nilai) {
+
+                if (nilai == undefined) return
+                nilai = parseInt(nilai)
+
+
+                if (nilai == 0) {
+                    $scope.item.obj[5042] = true
+                    $scope.item.obj[5043] = false
+                    $scope.item.obj[5044] = false
+                    $scope.item.obj[5045] = false
+                }
+                if (nilai >= 1 && nilai <= 3) {
+                    $scope.item.obj[5042] = false
+                    $scope.item.obj[5043] = true
+                    $scope.item.obj[5044] = false
+                    $scope.item.obj[5045] = false
+                }
+                if (nilai >= 4 && nilai <= 6) {
+                    $scope.item.obj[5042] = false
+                    $scope.item.obj[5043] = false
+                    $scope.item.obj[5044] = true
+                    $scope.item.obj[5045] = false
+                }
+                if (nilai >= 7 && nilai <= 10) {
+                    $scope.item.obj[5042] = false
+                    $scope.item.obj[5043] = false
+                    $scope.item.obj[5044] = false
+                    $scope.item.obj[5045] = true
+                }
+            });
+
+            $scope.getSkalaNyeri = function (data, stat) {
+                $scope.activeStatus = stat.descNilai
+                var nilai = stat.descNilai
+                if (nilai >= 0 && nilai <= 1) {
+                    $scope.item.obj[5046] = true
+                    $scope.item.obj[5047] = false
+                    $scope.item.obj[5048] = false
+                    $scope.item.obj[5049] = false
+                    $scope.item.obj[5050] = false
+                    $scope.item.obj[5051] = false
+                }
+                if (nilai >= 2 && nilai <= 3) {
+                    $scope.item.obj[5046] = false
+                    $scope.item.obj[5047] = true
+                    $scope.item.obj[5048] = false
+                    $scope.item.obj[5049] = false
+                    $scope.item.obj[5050] = false
+                    $scope.item.obj[5051] = false
+                }
+                if (nilai >= 4 && nilai <= 5) {
+                    $scope.item.obj[5046] = false
+                    $scope.item.obj[5047] = false
+                    $scope.item.obj[5048] = true
+                    $scope.item.obj[5049] = false
+                    $scope.item.obj[5050] = false
+                    $scope.item.obj[5051] = false
+                }
+                if (nilai >= 6 && nilai <= 7) {
+                    $scope.item.obj[5046] = false
+                    $scope.item.obj[5047] = false
+                    $scope.item.obj[5048] = false
+                    $scope.item.obj[5049] = true
+                    $scope.item.obj[5050] = false
+                    $scope.item.obj[5051] = false
+                }
+                if (nilai >= 8 && nilai <= 9) {
+                    $scope.item.obj[5046] = false
+                    $scope.item.obj[5047] = false
+                    $scope.item.obj[5048] = false
+                    $scope.item.obj[5049] = false
+                    $scope.item.obj[5050] = true
+                    $scope.item.obj[5051] = false
+                }
+
+                if (nilai == 10) {
+                    $scope.item.obj[5046] = false
+                    $scope.item.obj[5047] = false
+                    $scope.item.obj[5048] = false
+                    $scope.item.obj[5049] = false
+                    $scope.item.obj[5050] = false
+                    $scope.item.obj[5051] = true
+                }
+
+            }
+            $scope.getSkor = function (stat) {
+
+                var arrobj = Object.keys($scope.item.obj)
+                var arrSave = []
+                for (var i = arrobj.length - 1; i >= 0; i--) {
+                    if (arrobj[i] == stat.id) {
+                        if ($scope.item.obj[parseFloat(arrobj[i])] == true) {
+                            $scope.totalSkor = $scope.totalSkor + parseFloat(stat.descNilai)
+                            break
+                        } else {
+                            $scope.totalSkor = $scope.totalSkor - parseFloat(stat.descNilai)
+                            break
+                        }
+
+
+                    } else {
+
+                    }
+                }
+                $scope.item.obj[3152] = $scope.totalSkor + $scope.totalSkor2
+                setSkorAkhir($scope.item.obj[3152])
+            }
+            $scope.totalSkorAses = 0
+            $scope.getSkorAsesmen = function (stat, skor) {
+                var arrobj = Object.keys($scope.item.obj)
+                var arrSave = []
+                for (var i = arrobj.length - 1; i >= 0; i--) {
+                    if (arrobj[i] == stat.id) {
+                        if ($scope.item.obj[parseFloat(arrobj[i])] == true) {
+                            $scope.totalSkorAses = $scope.totalSkorAses + parseFloat(skor.descNilai)
+                            break
+                        } else {
+                            $scope.totalSkorAses = $scope.totalSkorAses - parseFloat(skor.descNilai)
+                            break
+                        }
+                    } else {
+
+                    }
+                }
+                $scope.item.obj[5194] = $scope.totalSkorAses
+            }
+            $scope.getSkor2 = function (stat) {
+
+                var arrobj = Object.keys($scope.item.obj)
+                var arrSave = []
+                for (var i = arrobj.length - 1; i >= 0; i--) {
+                    if (arrobj[i] == stat.id) {
+                        if ($scope.item.obj[parseFloat(arrobj[i])] == true) {
+                            $scope.totalSkor2 = $scope.totalSkor2 + parseFloat(stat.descNilai)
+                            break
+                        } else {
+                            $scope.totalSkor2 = $scope.totalSkor2 - parseFloat(stat.descNilai)
+                            break
+                        }
+
+
+                    } else {
+
+                    }
+                }
+                $scope.item.obj[5084] = $scope.totalSkor + $scope.totalSkor2
+                // setSkorAkhir($scope.item.obj[3152])
+            }
+            $scope.skorNutrisi = 0
+            $scope.getSkorNutrisi = function (stat) {
+                var arrobj = Object.keys($scope.item.obj)
+                var arrSave = []
+                for (var i = arrobj.length - 1; i >= 0; i--) {
+                    if (arrobj[i] == stat.id) {
+                        if ($scope.item.obj[parseFloat(arrobj[i])] == true) {
+                            $scope.skorNutrisi = $scope.skorNutrisi + parseFloat(stat.descNilai)
+                            break
+                        } else {
+                            $scope.skorNutrisi = $scope.skorNutrisi - parseFloat(stat.descNilai)
+                            break
+                        }
+                    } else {
+                    }
+                }
+                $scope.item.obj[5094] = $scope.skorNutrisi
+            }
+
+            function setSkorAkhir(total) {
+
+                if (total < 7) {
+                    $scope.item.obj[3149] = true
+                    $scope.item.obj[3150] = false
+                    $scope.item.obj[3151] = false
+                }
+
+                if (total >= 7 && total <= 14) {
+                    $scope.item.obj[3149] = false
+                    $scope.item.obj[3150] = true
+                    $scope.item.obj[3151] = false
+                }
+
+                if (total > 14) {
+                    $scope.item.obj[3149] = false
+                    $scope.item.obj[3150] = false
+                    $scope.item.obj[3151] = true
+                }
+            }
+
+            $scope.Batal =function(){
+                $scope.item.obj=[]
+            }
+
+            $scope.kembali = function () {
+                $rootScope.showRiwayat()
+            }
+
+            $scope.Save = function () {
+
+                var arrobj = Object.keys($scope.item.obj)
+                var arrSave = []
+                for (var i = arrobj.length - 1; i >= 0; i--) {
+                    if ($scope.item.obj[parseInt(arrobj[i])] instanceof Date)
+                        $scope.item.obj[parseInt(arrobj[i])] = moment($scope.item.obj[parseInt(arrobj[i])]).format('YYYY-MM-DD HH:mm')
+                    // $scope.item.obj[parseInt(arrobj[i])] = moment($scope.item.obj[parseInt(arrobj[i])]).format('HH:mm')
+                    arrSave.push({ id: arrobj[i], values: $scope.item.obj[parseInt(arrobj[i])] })
+                }
+                $scope.cc.jenisemr = 'asesmen'
+                var jsonSave = {
+                    head: $scope.cc,
+                    data: arrSave
+                }
+                medifirstService.post('emr/save-emr-dinamis', jsonSave).then(function (e) {
+                    nomorEMR =e.data.data.noemr
+                    $rootScope.loadRiwayat()
+                    medifirstService.postLogging('EMR', 'norec emrpasien_t', e.data.data.norec,  
+                    'Asesmen Awal Rawat Darurat ' + ' dengan No EMR - ' +e.data.data.noemr +  ' pada No Registrasi ' 
+                    + $scope.cc.noregistrasi).then(function (res) {
+                    })
+                    // var arrStr = {
+                    //     0: e.data.data.noemr
+                    // }
+                    // cacheHelper.set('cacheNomorEMR', arrStr);
+                });
+            }
+
+            $scope.cetakBlade = function(){
+                if (norecEMR == '')
+                {
+                    toastr.error("Data Tidak Ditemukan");
+                    return;
+                }
+
+            var local =JSON.parse(localStorage.getItem('profile')) 
+            var nama = medifirstService.getPegawaiLogin().namaLengkap
+
+            window.open(baseTransaksi + 'report/awal-rawat-darurat?nocm='
+                + $scope.cc.nocm + $scope.cc.norec +'&emr=' + norecEMR
+                +'&emrfk='+  $scope.cc.emrfk
+                +'&kdprofile='+local.id 
+                +'&nama='+nama,  '_blank');
+            }
+        }
+    ]);
+});
