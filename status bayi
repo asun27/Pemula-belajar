@@ -1,0 +1,1057 @@
+html code 
+
+<style type="text/css">
+    fieldset {
+        border-radius: 5px;
+        border: 1px solid #228be6;
+    }
+
+    .k-slider-horizontal {
+        display: inline-block;
+        float: left;
+        width: 450px;
+
+        height: 26px;
+
+ 
+
+    }
+    table,
+    th,
+    td {
+        border: 1px solid #929191;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+    }
+
+    .k-slider {
+
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 1%;
+        margin-bottom: 5%;
+        display: inline-block;
+    }
+
+    .activeBtn {
+        background-color: #10c4b2;
+        color: #ffffff;
+    }
+
+    .gambarAset {
+        max-width: 310px;
+        max-height: 100%;
+        display: block;
+        height: auto;
+    }
+    hr {
+        border: 1px dashed #cccccc;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        display: inline-block;
+        width: 100%;
+    }
+
+</style>
+<div class="grid_12" disable-contents="allDisabled" id="form">
+<div class="grid_12">
+    <div class="panel panel-default container_12">
+            <div class="panel-heading" c-translate>Status Bayi</div>
+    </div>
+   
+    <div class="grid_12">
+                <fieldset style="margin-top: 10px; ">
+                    
+                    <div class="grid_12" style="margin-top: 20px">
+                     <table style="width:100%;color: #4c5356;">
+                           
+                            <tr>
+                                <td>
+                                   <div class="grid_12">
+                                           <div class="grid_12">
+                                               <label c-label item="item">Nama Ibu</label>
+                                            </div>
+
+                                            <div class="grid_12">
+                                                <input c-text-box type="input" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047435]"  />
+                                            </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                           <div class="grid_12">
+                                               <label c-label item="item">Nama Ayah</label>
+                                            </div>
+
+                                            <div class="grid_12">
+                                                <input c-text-box type="input" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047436]"  />
+                                            </div>
+                                     
+                                   </div>
+                                </td>
+                                <td>
+                                   <div class="grid_12">
+                                           <div class="grid_12">
+                                               <label c-label item="item">No RM Ibu</label>
+                                            </div>
+
+                                            <div class="grid_12">
+                                                <input c-text-box type="input" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047437]"  />
+                                            </div>
+                                     
+                                   </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                   <div class="grid_12">
+                                           <div class="grid_12">
+                                               <label c-label item="item">Nama Bayi </label>
+                                            </div>
+
+                                            <div class="grid_12">
+                                                <input c-text-box type="input" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047438]"  />
+                                            </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                       <div class="grid_12">
+                                           <label c-label item="item">Tanggal & Jam Lahir Bayi</label>
+                                        </div>
+
+                                        <div class="grid_12">
+                                            <input style="width: 100%" k-ng-model="item.obj[22047439]" kendo-datetimepicker
+                                            placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"parsedate="yyyy-MM-dd HH:mm" />
+                                        </div>
+                                     
+                                   </div>
+                                </td>
+                                <td>
+                                    <div class="grid_12">
+                                            <div class="grid_12">
+                                                <label c-label item="item">Dokter/Bidan Pendamping</label>
+                                             </div>
+ 
+                                             <div class="grid_12">
+                                       <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22047440]" k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                                             </div>
+                                      
+                                    </div>
+                                 </td>
+                            </tr>
+
+                            <tr>
+                                 <td>
+                                    <div class="grid_12">
+                                        <label c-label item="item">Nama Zaal/Ruangan</label>
+                                     </div>
+
+                                    <div class="grid_12">
+                                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22047441]"
+                                        k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                        k-auto-bind="false" k-data-source="listRuang" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="grid_12">
+                                            <div class="grid_12">
+                                                <label c-label item="item">Tanggal & Pemeriksaan Lanjutan</label>
+                                             </div>
+ 
+                                             <div class="grid_12 parentKeteranganFieldTambahan">
+                                                  <input style="width: 100%" k-ng-model="item.obj[22047442]" kendo-datetimepicker
+                                            placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"parsedate="yyyy-MM-dd HH:mm" />
+                                             </div>
+                                      
+                                    </div>
+                                 </td>
+                                  <td>
+                                    <div class="grid_12">
+                                            <div class="grid_12">
+                                                <label c-label item="item">Kelainan Bawaan Lahir</label>
+                                             </div>
+ 
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                 <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.obj[22047443]" placeholder="Data Obyektif ">
+                                                     <label class="keteranganFieldTambahan"
+                                                     style="margin-top: 5px;margin-right: 30px"></label>
+                                             </div>
+                                      
+                                    </div>
+                                 </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="grid_12" style="margin-top: 20px">
+                        <table style="width:100%;color: #4c5356;">
+                            <tr>
+                                <th colspan="2" style="border: none;">
+                                    <label class="k-label">Pemeriksaan Fisik</label>
+                                    <label class="k-label">KU</label>
+                                    <div class="grid_12" style="margin-top: 5px;">
+                                        <div class="grid_3" style="margin-top: 5px;">
+                                            <div class="grid_12">
+                                                <label c-label item="item">BB</label>
+                                            </div>
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="text" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047444]" />
+                                                <label class="keteranganFieldTambahan"
+                                                    style="margin-top: 5px;margin-right: 30px">gr</label>
+                                            </div>
+                                        </div>
+                                        <div class="grid_3" style="margin-top: 5px;">
+                                            <div class="grid_12">
+                                                <label c-label item="item">PB</label>
+                                            </div>
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="text" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047445]" />
+                                                <label class="keteranganFieldTambahan"
+                                                    style="margin-top: 5px;margin-right: 30px">cm</label>
+                                            </div>
+                                        </div>
+                                        <div class="grid_3" style="margin-top: 5px;">
+                                            <div class="grid_12">
+                                                <label c-label item="item">Lingkar Kepala</label>
+                                            </div>
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="text" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047446]" />
+                                                <label class="keteranganFieldTambahan"
+                                                    style="margin-top: 5px;margin-right: 30px">cm</label>
+                                            </div>
+                                        </div>
+                                        <div class="grid_3" style="margin-top: 5px;">
+                                            <div class="grid_12">
+                                                <label c-label item="item">Lingkar Dada</label>
+                                            </div>
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="text" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047447]" />
+                                                <label class="keteranganFieldTambahan"
+                                                    style="margin-top: 5px;margin-right: 30px">cm</label>
+                                            </div>
+                                        </div>
+                                        <div class="grid_3" style="margin-top: 5px;">
+                                            <div class="grid_12">
+                                                <label c-label item="item">Warna Kulit</label>
+                                            </div>
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="text" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047448]" />
+                                                <label class="keteranganFieldTambahan"
+                                                    style="margin-top: 5px;margin-right: 30px"></label>
+                                            </div>
+                                        </div>
+                                        <div class="grid_3" style="margin-top: 5px;">
+                                            <div class="grid_12">
+                                                <label c-label item="item">Ekstremitas</label>
+                                            </div>
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="text" filter="" class="k-textbox"
+                                                    ng-model="item.obj[22047449]" />
+                                                <label class="keteranganFieldTambahan"
+                                                    style="margin-top: 5px;margin-right: 30px"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid_12" ng-repeat="list in listRujukan | orderBy:'id'" style="padding: 5pt 10pt">
+                                        <b style="margin-left: -10px;">{{list.nama}}</b>
+                                        <div class="grid_12" style="padding: 5pt">
+                                            <div ng-repeat="jawab in list.detail | orderBy:'id'">
+                                                <div ng-switch on="jawab.type">
+                                                    <div class="grid_12" ng-switch-when="label" style="margin-top: 10px;">
+                                                        <label c-label item="item">{{jawab.caption}}</label>
+                                                    </div>
+                                                    <div class="grid_3" ng-switch-when="checkbox">
+                                                        <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"
+                                                            ng-model="item.obj[jawab.id]">
+                                                        <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                                            &nbsp;{{jawab.nama}}</label>
+                                                    </div>
+                                                    <div class="grid_4" ng-switch-when="checkbox3">
+                                                        <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"
+                                                            ng-model="item.obj[jawab.id]">
+                                                        <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                                            &nbsp;{{jawab.nama}}</label>
+                                                    </div>
+                                                    <div class="grid_3" ng-switch-when="textbox">
+                                                        <div class="grid_12">
+                                                            <label c-label item="item">{{jawab.nama}}</label>
+                                                        </div>
+                                                        <div class="grid_12 parentKeteranganFieldTambahan">
+                                                            <input style="width: 90%" c-text-box type="text" filter="" class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="{{jawab.lol}} ">
+                                                            <label class="keteranganFieldTambahan"
+                                                                style="margin-top: 5px;margin-right: 30px">{{jawab.ket}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grid_12" ng-switch-when="textarea">
+                                                        <div>
+                                                            <label>{{jawab.nama}}</label>
+                                                        </div>
+                                                        <div>
+                                                            <textarea style="width: 80%;height: 100px" c-text-area type="input" filter="'string'" class="k-textbox" style="{{data.style}}"
+                                                            ng-model="item.obj[jawab.id]"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="grid_12" style="margin-top: 20px">
+                        <table style="width:100%;color: #4c5356;">
+                            <tr>
+                                <td style="height: 200px">
+                                   <div class="grid_12">
+                                         <div class="grid_12">
+                                               <label c-label item="item">Cap Telapak Kaki Kiri Bayi</label>
+                                         </div>
+                                         <div class="grid_12" style="margin-top: 5px">
+                                                <input id="files"
+                                                       type="file"
+                                                       kendo-upload
+                                                       k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                                                       k-multiple="false"
+                                                       k-select="onSelect1"/>
+                                          
+                                         </div>
+                                       <div class="grid_12">
+                                            <div id="preview1" style="margin-top: 10px">
+                                                <img class="gambarAset " src="{{item.objImg[22047498]}}" />
+                                            </div>
+                                         </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                         <div class="grid_12">
+                                               <label c-label item="item">Cap Telapak Kaki Kanan Bayi</label>
+                                         </div>
+                                         <div class="grid_12" style="margin-top: 5px">
+                                                <input id="files"
+                                                       type="file"
+                                                       kendo-upload
+                                                       k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                                                       k-multiple="false"
+                                                       k-select="onSelect2"/>
+                                          
+                                         </div>
+                                        <div class="grid_12">
+                                            <div  id="preview2" style="margin-top: 10px">
+                                                <img class="gambarAset " src="{{item.objImg[22047499]}}" />
+                                            </div>
+                                         </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                         <div class="grid_12">
+                                               <label c-label item="item">Cap Tambahan Lainnya</label>
+                                         </div>
+                                         <div class="grid_12" style="margin-top: 5px">
+                                          
+                                                <input id="files"
+                                                       type="file"
+                                                       kendo-upload
+                                                       k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                                                       k-multiple="false"
+                                                       k-select="onSelect3"/>
+                                        
+                                         </div>
+                                         <div class="grid_12">
+                                            <div  id="preview3" style="margin-top: 10px">
+                                                <img class="gambarAset " src="{{item.objImg[22047500]}}" />
+                                            </div>
+                                         </div>
+                                     
+                                   </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height: 200px">
+                                   <div class="grid_12">
+                                         <div class="grid_12">
+                                               <label c-label item="item">Cap Ibu Jari Kiri Ibu</label>
+                                         </div>
+                                         <div class="grid_12" style="margin-top: 5px">
+                                                <input id="files"
+                                                       type="file"
+                                                       kendo-upload
+                                                       k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                                                       k-multiple="false"
+                                                       k-select="onSelect4"/>
+                                          
+                                         </div>
+                                       <div class="grid_12">
+                                            <div id="preview4" style="margin-top: 10px">
+                                                <img class="gambarAset " src="{{item.objImg[22047501]}}" />
+                                            </div>
+                                         </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                         <div class="grid_12">
+                                               <label c-label item="item">Cap Ibu Jari Kanan Ibu</label>
+                                         </div>
+                                         <div class="grid_12" style="margin-top: 5px">
+                                                <input id="files"
+                                                       type="file"
+                                                       kendo-upload
+                                                       k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                                                       k-multiple="false"
+                                                       k-select="onSelect5"/>
+                                          
+                                         </div>
+                                        <div class="grid_12">
+                                            <div  id="preview5" style="margin-top: 10px">
+                                                <img class="gambarAset " src="{{item.objImg[22047502]}}" />
+                                            </div>
+                                         </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                         <div class="grid_12">
+                                               <label c-label item="item">Cap Tambahan Lainnya</label>
+                                         </div>
+                                         <div class="grid_12" style="margin-top: 5px">
+                                          
+                                                <input id="files"
+                                                       type="file"
+                                                       kendo-upload
+                                                       k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                                                       k-multiple="false"
+                                                       k-select="onSelect6"/>
+                                        
+                                         </div>
+                                         <div class="grid_12" style="margin-top: 10px">
+                                            <div  id="preview6" >
+                                                <img class="gambarAset " src="{{item.objImg[22047503]}}" />
+                                            </div>
+                                         </div>
+                                     
+                                   </div>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td colspan="3" style="text-align: center;">
+                                    <span style="font-weight: bold;">Tanda tangan orang yang menentukan jenis kelamin bayi </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                   <div class="grid_12">
+                                           <div class="grid_12">
+                                               <label c-label item="item">Dokter / Bidan Utama</label>
+                                            </div>
+
+                                            <div class="grid_12">
+                                                   <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22047504]" k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                                              
+                                            </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                           <div class="grid_12">
+                                               <label c-label item="item">Perawat Kamar Bersalin</label>
+                                            </div>
+
+                                            <div class="grid_12">
+                                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22047505]" k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                                            </div>
+                                     
+                                   </div>
+                                </td>
+                                 <td>
+                                   <div class="grid_12">
+                                       <div class="grid_12">
+                                           <label c-label item="item">Perawat Ruang Bayi</label>
+                                        </div>
+
+                                        <div class="grid_12">
+                                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22047506]" k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                                        </div>
+                                     
+                                   </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="grid_12">
+                        <p>Sewaktu pulang </p>
+                         <div class="grid_3">
+                           <div class="grid_12">
+                               <label c-label item="item">Tanggal</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input k-ng-model="item.obj[22047507]" kendo-datetimepicker k-max="now"
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"/>
+                            </div>
+                       </div>
+                    <hr>
+                       <p style="margin-top: 10px"> Saya menyatakan bahwa pada saat saya pulang telah menerima bayi. Saya memeriksanya dan meyakinkan bahwa bayi
+                       tersebut betul-betul anak saya. Saya mengecek nomor rekam medik ibu dan anak, serta nomor pengenalnya adalah
+                        <input c-text-box type="input" filter="" class="k-textbox"
+                                        ng-model="item.obj[22047508]"  /> dan berisi keterangan pengenal yang sesuai.  </p> 
+                    </div>
+                    <hr>
+                    <div class="grid_12" style="margin-top: 10px">
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item">Tanda Tangan Perawat (Saksi)</label>
+                                </div>
+
+                                <div class="grid_12">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22047509]" k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" /></div>
+                            </div>
+                    
+                        <div class="grid_3" >
+                            <div class="grid_12">
+                                <label c-label item="item">Tanda Tangan Ibu</label>
+                                </div>
+
+                                <div class="grid_12">
+                                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.obj[22047510]"  />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div ng-include='"../app/module/EMR/TemplateButtonDinamis" '></div>
+        </div>
+    </div>
+</div>
+
+java script code
+define(['initialize'], function (initialize) {
+  'use strict';
+  initialize.controller('StatusBayiCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'CacheHelper', 'DateHelper', 'MedifirstService',
+      function ($q, $rootScope, $scope, ModelItem, $state, cacheHelper, dateHelper, medifirstService) {
+
+
+          $scope.noCM = $state.params.noCM;
+          $scope.tombolSimpanVis = true
+          $scope.noRecPap = cacheHelper.get('noRecPap');
+          $scope.totalSkor = 0
+          $scope.totalSkor2 = 0
+          $scope.item.objImg =[]
+          $scope.item.objImg[22047498] = "../app/images/svg/no-image.svg"
+          $scope.item.objImg[22047499] = "../app/images/svg/no-image.svg"
+          $scope.item.objImg[22047500] = "../app/images/svg/no-image.svg"
+          $scope.item.objImg[22047501] = "../app/images/svg/no-image.svg"
+          $scope.item.objImg[22047502] = "../app/images/svg/no-image.svg"
+          $scope.item.objImg[22047503] = "../app/images/svg/no-image.svg"
+       
+          $scope.cc = {}
+          var nomorEMR = '-'
+          var emrfk_ =380052
+          $scope.cc.emrfk = emrfk_
+          var dataLoad = []
+          $scope.isCetak = false
+          var norecEMR = ''
+          var cacheNomorEMR = cacheHelper.get('cacheNomorEMR');
+          var cacheNoREC = cacheHelper.get('cacheNOREC_EMR');
+          if(cacheNoREC!= undefined){
+              norecEMR = cacheNomorEMR[1]
+          }
+          if (cacheNomorEMR != undefined) {
+              nomorEMR = cacheNomorEMR[0]
+              norecEMR = cacheNomorEMR[1]
+              $scope.cc.norec_emr = nomorEMR
+          }
+          var HttpClient = function () {
+              this.get = function (aUrl, aCallback) {
+                  var anHttpRequest = new XMLHttpRequest();
+                  anHttpRequest.onreadystatechange = function () {
+                      if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                          aCallback(anHttpRequest.responseText);
+                  }
+
+                  anHttpRequest.open("GET", aUrl, true);
+                  anHttpRequest.send(null);
+              }
+          }
+          $scope.cetakPdf = function () {
+              if (norecEMR == '') return
+              var client = new HttpClient();
+              client.get('http://127.0.0.1:1237/printvb/e-rekammedis?cetak-emr-cppt&id=' + $scope.cc.nocm + '&emr=' + norecEMR + '&view=true', function (response) {
+                  // do something with response
+              });
+          }
+
+          $scope.listRujukan = [
+            {
+                "id": 1, "nama": "Gerakan",
+                "detail": [
+                    { "id": 22047450, "nama": "Gerakan  ", "type": "checkbox" },
+                    { "id": 22047451, "nama": "Gerakan aktif ", "type": "checkbox" },
+                    { "id": 22047452, "nama": "Hipo aktif", "type": "checkbox" },
+                    { "id": 22047453, "nama": "Tidak ada gerakan ", "type": "checkbox" },
+                ]
+            },
+            {
+                "id":  1, "nama": "Repleks hisap",
+                "detail": [
+                    { "id": 22047454, "nama": "Kuat ", "type": "checkbox" },
+                    { "id": 22047455, "nama": "Lemah", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Tangis",
+                "detail": [
+                    { "id": 22047456, "nama": "Kuat ", "type": "checkbox" },
+                    { "id": 22047457, "nama": "Lemah", "type": "checkbox" },
+                    { "id": 22047458, "nama": "Merintih", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "",
+                "detail": [
+                    { "id": 22047459, "nama": "Anemis","ket": "", "type": "textbox" },
+                    { "id": 22047460, "nama": "RR","ket": "/m", "type": "textbox" },
+                    { "id": 22047461, "nama": "HR","ket": "/m", "type": "textbox" },
+                    { "id": 22047462, "nama": "Dispneu","ket": "", "type": "textbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Kepala",
+                "detail": [
+                    { "id": 22047463, "caption": "Caput Succedaneum  ", "type": "label" },
+                    { "id": 22047464, "nama": "Ya ", "type": "checkbox" },
+                    { "id": 22047465, "nama": "Tidak", "type": "checkbox" },
+                    { "id": 22047466, "caption": "Cephal Haematoma  ", "type": "label" },
+                    { "id": 22047467, "nama": "Ya ", "type": "checkbox" },
+                    { "id": 22047468, "nama": "Tidak", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Toraks",
+                "detail": [
+                    { "id": 22047469, "caption": "Retraksi dada", "type": "label" },
+                    { "id": 22047470, "nama": "Ya ", "type": "checkbox" },
+                    { "id": 22047471, "nama": "Tidak", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Anus",
+                "detail": [
+                    { "id": 22047472, "nama": "Ya ", "type": "checkbox" },
+                    { "id": 22047473, "nama": "Tidak ada", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Meconium",
+                "detail": [
+                    { "id": 22047474, "nama": "Ya ", "type": "checkbox" },
+                    { "id": 22047475, "nama": "Tidak ada", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Kelamin",
+                "detail": [
+                    { "id": 22047476, "nama": "Laki-laki ", "type": "checkbox" },
+                    { "id": 22047477, "nama": "Perempuan", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Jelaskan sesuai jenis kelamin",
+                "detail": [
+                    { "id": 22047478, "nama": "Testis Kanan","ket": "", "type": "textbox" },
+                    { "id": 22047479, "nama": "Testis Kiri","ket": "", "type": "textbox" },
+                    { "id": 22047480, "nama": "Labia Minora Kanan","ket": "", "type": "textbox" },
+                    { "id": 22047481, "nama": "Labia Minora Kanan","ket": "", "type": "textbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Malformasi",
+                "detail": [
+                    { "id": 22047482, "nama": "Ya ", "type": "checkbox" },
+                    { "id": 22047483, "nama": "Tidak ada", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Neonatus",
+                "detail": [
+                    { "id": 22047484, "nama": "Preterm ", "type": "checkbox" },
+                    { "id": 22047485, "nama": "Aterm", "type": "checkbox" },
+                    { "id": 22047486, "nama": "Post term ", "type": "checkbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Keadaan bayi",
+                "detail": [
+                    { "id": 22047487, "nama": "Sehat ", "type": "checkbox" },
+                    { "id": 22047488, "nama": "Tersangka Infeksi", "type": "checkbox" },
+                    { "id": 22047489, "nama": "Asfiksia berat", "type": "checkbox" },
+                    { "id": 22047490, "nama": "Asfiksia sedang", "type": "checkbox" },
+                    { "id": 22047491, "nama": "Asfiksia ringan", "type": "checkbox" },
+                    { "id": 22047492, "nama": "Lainnya", "type": "checkbox" },
+                    { "id": 22047493, "nama": "","ket": "", "type": "textbox" },
+                ]
+            },
+            {
+                "id": 1, "nama": "Terapi",
+                "detail": [
+                    { "id": 22047494, "nama": "1.","ket": "","lol": "Vit K, mg IM 1 kali dipaha kiri", "type": "textbox" },
+                    { "id": 22047495, "nama": "2.","ket": "", "type": "textbox" },
+                    { "id": 22047496, "nama": "3.","ket": "", "type": "textbox" },
+                    { "id": 22047497, "nama": "4.","ket": "", "type": "textbox" },
+                ]
+            },
+        ]
+
+          medifirstService.getPart('emr/get-datacombo-part-pegawai', true, true, 20).then(function (data) {
+              $scope.listPegawai = data
+           })
+          medifirstService.getPart('emr/get-datacombo-part-dokter', true, true, 20).then(function (data) {
+              $scope.listDokter = data
+
+           })
+
+          medifirstService.getPart('emr/get-datacombo-part-ruangan-pelayanan', true, true, 20).then(function (data) {
+              $scope.listRuang = data
+          
+           })
+
+         medifirstService.getPart('emr/get-datacombo-part-diagnosa', true, true, 20).then(function (data) {
+              $scope.listDiagnosa = data
+          
+           })  
+          medifirstService.getPart("sysadmin/general/get-datacombo-jenispegawai-cppt", true, true, 20).then(function (data) {
+                  $scope.listJenisPegawai = data;
+          });
+          
+  
+
+          var chacePeriode = cacheHelper.get('cacheRekamMedis');
+          if (chacePeriode != undefined) {
+              $scope.cc.nocm = chacePeriode[0]
+              $scope.cc.namapasien = chacePeriode[1]
+              $scope.cc.jeniskelamin = chacePeriode[2]
+              $scope.cc.noregistrasi = chacePeriode[3]
+              $scope.cc.umur = chacePeriode[4]
+              $scope.cc.kelompokpasien = chacePeriode[5]
+              $scope.cc.tglregistrasi = chacePeriode[6]
+              $scope.cc.norec = chacePeriode[7]
+              $scope.cc.norec_pd = chacePeriode[8]
+              $scope.cc.objectkelasfk = chacePeriode[9]
+              $scope.cc.namakelas = chacePeriode[10]
+              $scope.cc.objectruanganfk = chacePeriode[11]
+              $scope.cc.namaruangan = chacePeriode[12]
+              $scope.cc.DataNoregis = chacePeriode[12]
+              $scope.cc.dokterdpjp = chacePeriode[16]
+              $scope.cc.iddpjp = chacePeriode[17]
+              if (nomorEMR == '-') {
+                  $scope.cc.norec_emr = '-'
+              } else {
+                  $scope.cc.norec_emr = nomorEMR
+              }
+          }
+          var chekedd = false
+
+          medifirstService.get("emr/get-emr-transaksi-detail?noemr=" + nomorEMR + "&emrfk=" + $scope.cc.emrfk, true).then(function (dat) {
+              $scope.item.obj = []
+              $scope.item.obj2 = []
+           
+              dataLoad = dat.data.data
+         
+              // console.log(dataLoad)
+              for (var i = 0; i <= dataLoad.length - 1; i++) {
+                  if (parseFloat($scope.cc.emrfk) == dataLoad[i].emrfk) {
+
+                      if (dataLoad[i].type == "textbox") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                      }
+                      if (dataLoad[i].type == "checkbox") {
+                          chekedd = false
+                          if (dataLoad[i].value == '1') {
+                              chekedd = true
+                          }
+                          $scope.item.obj[dataLoad[i].emrdfk] = chekedd                      
+
+
+                      }
+
+                      if (dataLoad[i].type == "datetime") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                      }
+                      if (dataLoad[i].type == "datetime2") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                      }
+                      if (dataLoad[i].type == "time") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                      }
+                      if (dataLoad[i].type == "date") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                      }
+
+                      if (dataLoad[i].type == "checkboxtextbox") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                          $scope.item.obj2[dataLoad[i].emrdfk] = true
+                      }
+                      if (dataLoad[i].type == "checkboxtextarea") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                          $scope.item.obj2[dataLoad[i].emrdfk] = true
+                      }
+                      if (dataLoad[i].type == "textarea") {
+                          $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                      }
+                      if (dataLoad[i].type == "combobox2") {
+                          var str = dataLoad[i].value
+                          if(str != undefined){
+                              var res = str.split("~");
+                              // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                              $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }        
+                          }   
+                          // var res = str.split("~");
+                          // // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                          // $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }
+
+                      }
+                      if (dataLoad[i].type == "combobox") {
+                          var str = dataLoad[i].value
+                          if(str != undefined){
+                              var res = str.split("~");
+                              // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                              $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }        
+                          }   
+                          // var res = str.split("~");
+                          // // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                          // $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }
+
+                      }
+                 
+                      if (dataLoad[i].type == "combobox3") {
+                          var str = dataLoad[i].value
+                          if(str != undefined){
+                              var res = str.split("~");
+                              // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                              $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }        
+                          }   
+                        
+
+                      }
+
+                  }
+
+              }
+          })
+
+          medifirstService.get("emr/get-emr-transaksi-detail-img?noemr=" + nomorEMR + "&emrfk=" + $scope.cc.emrfk, true).then(function (dat) {
+              // $scope.item.objImg =[]
+              var dataImg = dat.data.data
+              for (var i = 0; i <= dataImg.length - 1; i++) {
+                  if (parseFloat($scope.cc.emrfk) == dataImg[i].emrfk) {
+                      $scope.item.objImg[dataImg[i].emrdfk] = dataImg[i].image
+                    }
+
+              }
+          })
+      
+         
+          
+
+          $scope.Batal =function(){
+              $scope.item.obj=[]
+              $scope.item.objImg =[]
+          }
+          $scope.kembali = function () {
+              $rootScope.showRiwayat()
+          }
+
+          $scope.Save = function () {
+             
+
+              var arrobj = Object.keys($scope.item.obj)
+              var arrSave = []
+              for (var i = arrobj.length - 1; i >= 0; i--) {
+                  if ($scope.item.obj[parseInt(arrobj[i])] instanceof Date)
+                      $scope.item.obj[parseInt(arrobj[i])] = moment($scope.item.obj[parseInt(arrobj[i])]).format('YYYY-MM-DD HH:mm')
+                   // $scope.item.obj[parseInt(arrobj[i])] = moment($scope.item.obj[parseInt(arrobj[i])]).format('HH:mm')
+                  arrSave.push({ id: arrobj[i], values: $scope.item.obj[parseInt(arrobj[i])] })
+              }
+              var arrobjImg = Object.keys($scope.item.objImg)
+              var arrSaveImg = []
+              for (var i = arrobjImg.length - 1; i >= 0; i--) {
+                  arrSaveImg.push({ id: arrobjImg[i], values: $scope.item.objImg[parseInt(arrobjImg[i])] })
+              }
+              $scope.cc.jenisemr = 'asesmen'
+              var jsonSave = {
+                  head: $scope.cc,
+                  data: arrSave,
+                  dataimg: arrSaveImg
+              }
+              medifirstService.post('emr/save-emr-dinamis', jsonSave).then(function (e) {
+
+                  $rootScope.loadRiwayat()
+                  medifirstService.postLogging('EMR', 'norec emrpasien_t', e.data.data.norec,  
+                  'Identifikasi Bayi ' + ' dengan No EMR - ' +e.data.data.noemr +  ' pada No Registrasi ' 
+                  + $scope.cc.noregistrasi).then(function (res) {
+                  })
+                    $scope.cc.norec_emr = e.data.data.noemr
+               
+              });
+          }
+         
+           $scope.onSelect1 = function (e) {
+              $("#preview1").empty();
+              for (var i = 0; i < e.files.length; i++) {
+                  var file = e.files[i].rawFile;
+
+                  if (file) {
+                      var reader = new FileReader();
+                      reader.onload = function (readerEvt) {
+                     //     debugger;
+                          var binaryString = readerEvt.target.result;
+                  
+                         $scope.item.objImg[22047498] = binaryString;
+                       
+                      }
+                      reader.onloadend = function () {
+                          $("<img img class=\"gambarAset \">").attr("src", this.result).appendTo($("#preview1"));
+                      };
+
+                      reader.readAsDataURL(file);
+                  }
+              }
+          }
+          $scope.onSelect2 = function (e) {
+              $("#preview2").empty();
+              for (var i = 0; i < e.files.length; i++) {
+                  var file = e.files[i].rawFile;
+
+                  if (file) {
+                      var reader = new FileReader();
+                      reader.onload = function (readerEvt) {
+                     //     debugger;
+                          var binaryString = readerEvt.target.result;
+                  
+                           $scope.item.objImg[22047499] = binaryString;
+                      }
+                      reader.onloadend = function () {
+                          $("<img img class=\"gambarAset \">").attr("src", this.result).appendTo($("#preview2"));
+                      };
+
+                      reader.readAsDataURL(file);
+                  }
+              }
+          }
+          $scope.onSelect3 = function (e) {
+              $("#preview3").empty();
+              for (var i = 0; i < e.files.length; i++) {
+                  var file = e.files[i].rawFile;
+
+                  if (file) {
+                      var reader = new FileReader();
+                      reader.onload = function (readerEvt) {
+                     //     debugger;
+                          var binaryString = readerEvt.target.result;
+                              $scope.item.objImg[22047500] = binaryString;
+                      }
+                      reader.onloadend = function () {
+                          $("<img img class=\"gambarAset \">").attr("src", this.result).appendTo($("#preview3"));
+                      };
+
+                      reader.readAsDataURL(file);
+                  }
+              }
+          }
+          $scope.onSelect4 = function (e) {
+            $("#preview4").empty();
+            for (var i = 0; i < e.files.length; i++) {
+                var file = e.files[i].rawFile;
+
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (readerEvt) {
+                   //     debugger;
+                        var binaryString = readerEvt.target.result;
+                
+                       $scope.item.objImg[22047501] = binaryString;
+                     
+                    }
+                    reader.onloadend = function () {
+                        $("<img img class=\"gambarAset \">").attr("src", this.result).appendTo($("#preview4"));
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+        $scope.onSelect5 = function (e) {
+            $("#preview5").empty();
+            for (var i = 0; i < e.files.length; i++) {
+                var file = e.files[i].rawFile;
+
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (readerEvt) {
+                   //     debugger;
+                        var binaryString = readerEvt.target.result;
+                
+                         $scope.item.objImg[22047502] = binaryString;
+                    }
+                    reader.onloadend = function () {
+                        $("<img img class=\"gambarAset \">").attr("src", this.result).appendTo($("#preview5"));
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+        $scope.onSelect6 = function (e) {
+            $("#preview6").empty();
+            for (var i = 0; i < e.files.length; i++) {
+                var file = e.files[i].rawFile;
+
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (readerEvt) {
+                   //     debugger;
+                        var binaryString = readerEvt.target.result;
+                            $scope.item.objImg[22047503] = binaryString;
+                    }
+                    reader.onloadend = function () {
+                        $("<img img class=\"gambarAset \">").attr("src", this.result).appendTo($("#preview6"));
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+      }
+  ]);
+});
