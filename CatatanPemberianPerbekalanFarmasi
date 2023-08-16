@@ -1,0 +1,1629 @@
+html code
+<style type="text/css">
+    fieldset {
+        border-radius: 5px;
+        border: 1px solid #228be6;
+    }
+
+    .k-slider-horizontal {
+        display: inline-block;
+        float: left;
+        width: 450px;
+
+        height: 26px;
+
+
+    }
+
+    .k-slider {
+
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 1%;
+        margin-bottom: 5%;
+        display: inline-block;
+    }
+
+    .activeBtn {
+        background-color: #10c4b2;
+        color: #ffffff;
+    }
+    table,
+    th,
+    td {
+        border: 1px solid #929191;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+
+<div class="panel panel-default container_12">
+    <div class="panel-heading" c-translate>Catatan pemberian pembekalan farmasi (CPPF) Terintegrasi</div>
+</div>
+
+<div class="grid_12" style="margin-top: 10px;">
+<fieldset>
+<legend><b>Catatan pemberian pembekalan farmasi (CPPF)</b></legend>
+    <div class="grid_12" style="margin-top: 10px; text-align: center">
+        <table>
+            <tr>
+                <td colspan="32">
+                    <table style="border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th colspan="2" style="border: none;">
+                                    <label style="color: red;" class="k-label">Note Keterangan: *Tuliskan dikolom "Tanda" untuk mewakili keadaan. Dibawah ini keterangan dari "Tanda", Sebagai berikut:</label>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><label class="k-label">V : Setelah obat diberikan</label></td>
+                                <td><label class="k-label">A : Reaksi alergi</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="k-label">T : Pasien menolak</label></td>
+                                <td><label class="k-label">R : Reaksi efek samping obat setelah pemberian</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="k-label">K : Kondisi pasien menyebabkan ditundanya pemberian suatu obat</label></td>
+                                <td><label class="k-label">X : Obat tidak tersedia</label></td>
+                            </tr>
+                        </tbody>
+                    </table>                        
+                </td>
+            </tr>
+            <tr>
+                <th colspan="32">
+                    <div class="grid_12" ng-repeat="list in listDate | orderBy:'id'">
+                        <div class="grid_12" ng-repeat="jawab in list.detail | orderBy:'id'">
+                            <div ng-switch on="jawab.type">
+                                <div class="grid_12" ng-switch-when="label">
+                                    <label c-label item="item">{{jawab.caption}}</label>
+                                </div>
+                                <div class="grid_12" ng-switch-when="checkbox,textbox" style="font-size: small;">
+                                    <div class="grid_12">
+                                        <span style="font-weight: bold;">{{jawab.caption}}</span>
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 5px;">
+                                        <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"ng-model="item.obj[jawab.id]">
+                                        <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                        &nbsp;{{jawab.nama}}</label>
+                                        <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id1}}" ng-model="item.obj[jawab.id1]">
+                                        <label class="k-checkbox-label" for="item.obj{{jawab.id1}}">
+                                        &nbsp;{{jawab.nama1}}
+                                        </label>
+                                        <input c-text-box type="text" filter="" class="k-textbox" id="item.obj{{jawab.id2}}" ng-model="item.obj[jawab.id2]"
+                                        style="margin-left: 25px; height: 30px; width: 97%" ng-show="item.obj[jawab.id1]" placeholder="Sebutkan" />
+                                        <div ng-show="item.obj[jawab.id3]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="32">
+                    <label style="color: red;" class="k-label">Note Keterangan : *Khusus antibiotik (AB), ditandai : P/E/D (Keterangan : P =Profilaksis, E=Empirik, D=Definitif)</label>
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align: center; width: 10px;">No.</th>
+                <th style="text-align: center; width: 155px;">Nama obat</th>
+                <th style="text-align: center; width: 130px;">Dosis</th>
+                <th style="text-align: center; width: 130px;">Frekuensi</th>
+                <th style="text-align: center; width: 130px;">Cara pemberian</th>
+                <th style="text-align: center; width: 130px;">Antibiotik</th>
+                <th style="text-align: center; width: 130px;">Nama Dokter</th>
+                <th style="text-align: center; width: 130px;">Verifikasi Farmasis</th>
+                <th style="text-align: center; width: 130px;">Dihentikan</th>
+            </tr>
+            <tr ng-repeat="list in listAsuhan">
+                <td style="text-align: center">{{list.nama}}</td>
+                <td ng-repeat="jawab in list.detail">
+                    <div ng-switch on="jawab.type">
+                        <div class="grid_12" ng-switch-when="label" style="text-align: center">
+                            <div class="grid_12">
+                                <label>{{jawab.nama}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="textbox" style="margin-top: 5px;">
+                            <div class="grid_12">
+                                <label>{{jawab.nama}}</label>
+                            </div>
+                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                <input c-text-box type="text" filter="" class="k-textbox"
+                                    ng-model="item.obj[jawab.id]" style="width: 95%" />
+                                <label class="keteranganFieldTambahan"
+                                    style="margin-top: 5px;margin-right: 60px">{{jawab.satuan}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="checkbox" style="margin-left: 10px;">
+                                <div class="grid_12">
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"ng-model="item.obj[jawab.id]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                    &nbsp;{{jawab.nama}}</label>
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id1}}"ng-model="item.obj[jawab.id1]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id1}}">
+                                    &nbsp;{{jawab.nama1}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id2}}"ng-model="item.obj[jawab.id2]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id2}}">
+                                    &nbsp;{{jawab.nama2}}</label>
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id3}}"ng-model="item.obj[jawab.id3]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id3}}">
+                                    &nbsp;{{jawab.nama3}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="textarea">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" 
+                                        class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="Data Objective "></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-switch-when="datetime">
+                                <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                    kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" 
+                                    k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                            </div>
+                            <div class="grid_12" ng-switch-when="textarea,datetime">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" 
+                                        class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="Data Objective "></textarea>
+                                </div>
+                                <div class="grid_12">
+                                    <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                        kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" 
+                                        k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="datetime,combobox">
+                                <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" 
+                                k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                            </div>
+                            <div class="grid_12" ng-switch-when="datetime,combobox">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[jawab.id]" 
+                                k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listPegawai" />
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="grid_12" style="margin-top: 20px; text-align: center">
+        <table>
+            <tr>
+                <th colspan="32">
+                    <label style="color: red;" class="k-label">Note Keterangan : * Pagi = (P), Siang = (Si) , Sore = (S) , Malam = (M)</label>
+                </th>
+            </tr>
+            <tr ng-repeat="list in listDate1 | orderBy:'id'" ng-init="listIndex = $index">
+                <td style="font-weight: bold;text-align: center; Width: 10px">{{list.nama}}</td>
+                <th style="text-align: center; Width: 140px" ng-repeat="jawab in list.rincian" ng-init="jawabIndex = $index">
+                    <div class="grid_12">
+                        <div ng-switch on="jawab.type">
+                            <div ng-switch-when="date">
+                                <input style="width: 100%" k-ng-model="item.obj[jawab.id]" kendo-datepicker
+                                    placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" parsedate="yyyy-MM-dd" />
+                            </div>
+                            <div ng-switch-when="textbox">
+                                <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                            </div>
+                            <div ng-switch-when="label">
+                                <label class="k-label"> {{jawab.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th colspan="4" style="text-align: center;" ng-repeat="jawab in list.detail" ng-init="jawabIndex = $index">
+                    <div class="grid_12">
+                        <div ng-switch on="jawab.type">
+                            <div ng-switch-when="date">
+                                <input style="width: 100%" k-ng-model="item.obj[jawab.id]" kendo-datepicker
+                                    placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" parsedate="yyyy-MM-dd" />
+                            </div>
+                            <div ng-switch-when="textbox">
+                                <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                            </div>
+                            <div ng-switch-when="label">
+                                <label class="k-label"> {{jawab.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr ng-repeat="list in listSadar | orderBy:'id'" ng-init="listIndex = $index">
+                <td style="font-weight: bold;text-align: center; Width: 10px">{{list.nama}}</td>
+                <td style="text-align: center; Width: 140px" ng-repeat="jawab in list.rincian">
+                    <div class="grid_12">
+                        <div ng-switch on="jawab.type">
+                            <div class="grid_12" ng-switch-when="textarea">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" 
+                                    class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="Nama Obat "></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-switch-when="textbox">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input c-text-box type="text" filter="" class="k-textbox"ng-model="item.obj[jawab.id]" style="width: 100%" />
+                                    <label class="keteranganFieldTambahan"style="margin-top: 5px;margin-right: 60px">{{jawab.satuan}}</label>
+                                </div>
+                            </div>
+                            <div ng-switch-when="checkbox" style="text-align: center;">
+                                <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"ng-model="item.obj[jawab.id]" ng-click="getSkor(jawab)">
+                                <label class="k-checkbox-label" for="item.obj{{jawab.id}}"><!-- &nbsp;{{jawab.nama}} --></label>
+                            </div>
+                            <div ng-switch-when="label" style="font-weight: bold;text-align: center;">
+                                <label class="k-label"> {{jawab.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;" ng-repeat="jawab in list.detail">
+                    <div class="grid_12">
+                        <div ng-switch on="jawab.type">
+                            <div ng-switch-when="textbox">
+                                <div class="parentKeteranganFieldTambahan">
+                                    <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                </div>
+                            </div>
+                            <div ng-switch-when="checkbox" style="text-align: center;">
+                                <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"ng-model="item.obj[jawab.id]" ng-click="getSkor(jawab)">
+                                <label class="k-checkbox-label" for="item.obj{{jawab.id}}"><!-- &nbsp;{{jawab.nama}} --></label>
+                            </div>
+                            <div ng-switch-when="label">
+                                <label class="k-label"> {{jawab.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="grid_12" style="margin-top: 20px; text-align: center">
+        <table>
+            <tr>
+                <th style="text-align: center; width: 10px;">No.</th>
+                <th style="text-align: center; width: 140px;">Penerima</th>
+            </tr>
+            <tr ng-repeat="list in listpenerima">
+                <td style="text-align: center">{{list.nama}}</td>
+                <td ng-repeat="jawab in list.detail">
+                    <div ng-switch on="jawab.type">
+                        <div class="grid_12" ng-switch-when="label" style="text-align: center">
+                            <div class="grid_12">
+                                <label>{{jawab.nama}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="textbox" style="margin-top: 5px;">
+                            <div class="grid_12">
+                                <label>{{jawab.nama}}</label>
+                            </div>
+                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                <input c-text-box type="text" filter="" class="k-textbox"
+                                    ng-model="item.obj[jawab.id]" style="width: 95%" />
+                                <label class="keteranganFieldTambahan"
+                                    style="margin-top: 5px;margin-right: 60px">{{jawab.satuan}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="checkbox" style="margin-left: 10px;">
+                                <div class="grid_12">
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"ng-model="item.obj[jawab.id]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                    &nbsp;{{jawab.nama}}</label>
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id1}}"ng-model="item.obj[jawab.id1]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id1}}">
+                                    &nbsp;{{jawab.nama1}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id2}}"ng-model="item.obj[jawab.id2]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id2}}">
+                                    &nbsp;{{jawab.nama2}}</label>
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id3}}"ng-model="item.obj[jawab.id3]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id3}}">
+                                    &nbsp;{{jawab.nama3}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="textarea">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" 
+                                        class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="Data Objective "></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-switch-when="datetime">
+                                <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                    kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" 
+                                    k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                            </div>
+                            <div class="grid_12" ng-switch-when="textarea,datetime">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" 
+                                        class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="Data Objective "></textarea>
+                                </div>
+                                <div class="grid_12">
+                                    <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                        kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" 
+                                        k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="datetime,combobox">
+                                <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" 
+                                k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                            </div>
+                            <div class="grid_12" ng-switch-when="datetime,combobox">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[jawab.id]" 
+                                k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listPegawai" />
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="grid_12" style="margin-top: 20px; text-align: center">
+        <table>
+            <tr>
+                <th colspan="6" style="text-align: center; width: 140px;">Verivikasi obat</th>
+            </tr>
+            <tr>
+                <th style="text-align: center; width: 10px;">No.</th>
+                <th style="text-align: center; width: 140px;">Tanggal & Jam</th>
+                <th style="text-align: center; width: 140px;">Masalah</th>
+                <th style="text-align: center; width: 140px;">Tindak lanjut</th>
+                <th style="text-align: center; width: 140px;">Nama Petuga Farmasi</th>
+                <th style="text-align: center; width: 140px;">Nama Dokter</th>
+            </tr>
+            <tr ng-repeat="list in listpenerima1">
+                <td style="text-align: center">{{list.nama}}</td>
+                <td ng-repeat="jawab in list.detail">
+                    <div ng-switch on="jawab.type">
+                        <div class="grid_12" ng-switch-when="label" style="text-align: center">
+                            <div class="grid_12">
+                                <label>{{jawab.nama}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="textbox" style="margin-top: 5px;">
+                            <div class="grid_12">
+                                <label>{{jawab.nama}}</label>
+                            </div>
+                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                <input c-text-box type="text" filter="" class="k-textbox"
+                                    ng-model="item.obj[jawab.id]" style="width: 95%" />
+                                <label class="keteranganFieldTambahan"
+                                    style="margin-top: 5px;margin-right: 60px">{{jawab.satuan}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="checkbox" style="margin-left: 10px;">
+                                <div class="grid_12">
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"ng-model="item.obj[jawab.id]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                    &nbsp;{{jawab.nama}}</label>
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id1}}"ng-model="item.obj[jawab.id1]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id1}}">
+                                    &nbsp;{{jawab.nama1}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id2}}"ng-model="item.obj[jawab.id2]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id2}}">
+                                    &nbsp;{{jawab.nama2}}</label>
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id3}}"ng-model="item.obj[jawab.id3]">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id3}}">
+                                    &nbsp;{{jawab.nama3}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="textarea">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" 
+                                        class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="Data Objective "></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-switch-when="textarea,datetime">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <textarea cols="12" rows="3" c-text-area type="input" filter="'string'" 
+                                        class="k-textbox" ng-model="item.obj[jawab.id]" placeholder="Data Objective "></textarea>
+                                </div>
+                                <div class="grid_12">
+                                    <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                        kendo-datetimepicker placeholder="yyyy-MM-dd HH:mm" 
+                                        k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" ng-switch-when="datetime">
+                                <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" 
+                                k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                            </div>
+                            <div class="grid_12" ng-switch-when="combobox">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[jawab.id]" 
+                                k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listPegawai" />
+                            </div>
+                            <div class="grid_12" ng-switch-when="textarea,datetime">
+                                <div class="grid_12">
+                                    <label>{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_12">
+                                    <input style="width: 100%" k-ng-model="item.obj[jawab.id]" 
+                                    kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" 
+                                    k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                                </div>
+                                <div class="grid_12">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[jawab.id]" 
+                                    k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                    k-auto-bind="false" k-data-source="listPegawai" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</fieldset>
+</div>
+<div class="grid_12">
+    <div class="grid_8"></div>
+    <div class="grid_4">
+        <fieldset style="margin-top:10px;border-radius: 10px;height: 220px;">
+            <div style="padding: 20px;">
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Tanggal dan Jam"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model="item.obj[22043508]" kendo-datetimepicker
+                            placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
+                            parsedate="yyyy-MM-dd HH:mm" />
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-top:10px">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Dokter"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22043509]"
+                            k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listPegawai" />
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-top:10px">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Perawat"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22043510]"
+                            k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listPegawai" />
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+    
+ <div class="grid_12">
+     <div ng-include='"../app/module/EMR/TemplateButtonDinamis" '></div>
+ </div>
+
+javascript code
+define(['initialize', 'Configuration'], function (initialize, config) {
+'use strict';
+    var baseTransaksi = config.baseApiBackend;
+    initialize.controller('CatatanPemberianPerbekalanFarmasiCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'CacheHelper', 'DateHelper', 'MedifirstService',
+    function ($q, $rootScope, $scope, ModelItem, $state, cacheHelper, dateHelper, medifirstService) {
+        $scope.myVar = true
+        $scope.noCM = $state.params.noCM;
+        $scope.tombolSimpanVis = true
+        $scope.noRecPap = cacheHelper.get('noRecPap');
+        $scope.totalSkor = 0
+        $scope.totalSkor2 = 0
+        $scope.totalSkor4 = 0
+        $scope.cc = {}
+        var nomorEMR = '-'
+        $scope.cc.emrfk = 380028;
+        var dataLoad = []
+        var pegawaiInputDetail= ''
+        $scope.item.kasusbaru = true
+        $scope.item.kasuslama = false
+        $scope.isCetakV = true
+        var norecEMR = ''
+        var cacheNomorEMR = cacheHelper.get('cacheNomorEMR');
+        var cacheNoREC = cacheHelper.get('cacheNOREC_EMR');
+        if(cacheNoREC!= undefined){
+            norecEMR = cacheNomorEMR[1]
+        }
+        if (cacheNomorEMR != undefined) {
+            nomorEMR = cacheNomorEMR[0]
+            norecEMR = cacheNomorEMR[1]
+            $scope.cc.norec_emr = nomorEMR
+        }
+        var HttpClient = function () {
+            this.get = function (aUrl, aCallback) {
+                var anHttpRequest = new XMLHttpRequest();
+                anHttpRequest.onreadystatechange = function () {
+                    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                        aCallback(anHttpRequest.responseText);
+                }
+
+                anHttpRequest.open("GET", aUrl, true);
+                anHttpRequest.send(null);
+            }
+        }
+        $scope.cetakPdf = function () {
+            if (norecEMR == '') return
+            var client = new HttpClient();
+            client.get('http://127.0.0.1:1237/printvb/e-rekammedis?cetak-emr-traseprimer&id' + $scope.cc.nocm + '&emr=' + norecEMR + '&view=true', function (response) {
+                // do something with response
+            });
+        }
+
+        medifirstService.getPart('emr/get-datacombo-part-pegawai', true, true, 20).then(function (data) {
+            $scope.listPegawai = data
+        })
+        medifirstService.getPart('emr/get-datacombo-part-ruangan-pelayanan', true, true, 20).then(function (data) {
+            $scope.listRuangan = data
+        })
+
+        $scope.listDate = [
+            {
+                "id": 1,
+                "detail": [
+                    { "id": 22043004,"id1": 22043005,"id2": 22043006,"caption": "Riwayat alergi :", "nama": "Tidak Ada","nama1": "Ya","type": "checkbox,textbox" },
+                ]
+            }
+        ]
+
+        $scope.listDate1 = [
+            {
+                "id": 1, "nama": "No.",
+                "rincian": [
+                    { "id": 22043007, "nama": "Tanggal pemberian", "type": "label" },
+                ],
+                "detail": [
+                    { "id": 22043008, "nama": "h-1", "type": "date" },
+                    { "id": 22043009, "nama": "h-2", "type": "date" },
+                    { "id": 22043010, "nama": "h-3", "type": "date" },
+                    { "id": 22043011, "nama": "h-4", "type": "date" },
+                    { "id": 22043012, "nama": "h-5", "type": "date" },
+                    { "id": 22043013, "nama": "h-6", "type": "date" },
+                    { "id": 22043014, "nama": "h-7", "type": "date" },
+                ]
+            }
+        ]
+
+        $scope.listAsuhan = [
+            // {
+            //     "id": 1, "nama": "0",
+            //     "detail": [
+            //         { "id": 22043015, "nama": "", "satuan": "", "type": "textarea" },
+            //         { "id": 22043016, "nama": "", "satuan": "", "type": "textarea" },
+            //         { "id": 22043017, "nama": "", "satuan": "", "type": "textarea" },
+            //         { "id": 22043018, "nama": "", "satuan": "", "type": "textarea" },
+            //         { "id": 22043019, "nama": "", "satuan": "", "type": "textarea" },
+            //         { "id": 22043020,"id1": 22043021,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+            //         { "id": 22043022,"id1": 22043023,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+            //         { "id": 22043024, "nama": "", "satuan": "", "type": "textarea" },
+            //     ]
+            // },
+            {
+                "id": 1, "nama": "1",
+                "detail": [
+                    { "id": 22043025, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043026, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043027, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043028, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043029, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043030,"id1": 22043031,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043032,"id1": 22043033,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043034, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "2",
+                "detail": [
+                    { "id": 22043035, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043036, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043037, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043038, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043039, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043040,"id1": 22043041,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043042,"id1": 22043043,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043044, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "3",
+                "detail": [
+                    { "id": 22043045, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043046, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043047, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043048, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043049, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043050,"id1": 22043051,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043052,"id1": 22043053,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043054, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "4",
+                "detail": [
+                    { "id": 22043055, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043056, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043057, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043058, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043059, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043060,"id1": 22043061,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 220430602,"id1": 22043063,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043064, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "5",
+                "detail": [
+                    { "id": 22043065, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043066, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043067, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043068, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043069, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043070,"id1": 22043071,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043072,"id1": 22043073,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043074, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "6",
+                "detail": [
+                    { "id": 22043075, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043076, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043077, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043078, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043079, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043080,"id1": 22043081,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043082,"id1": 22043083,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043084, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "7",
+                "detail": [
+                    { "id": 22043085, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043086, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043087, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043088, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043089, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043090,"id1": 22043091,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043092,"id1": 22043093,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043094, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "8",
+                "detail": [
+                    { "id": 22043095, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043096, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043097, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043098, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043099, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043100,"id1": 22043101,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043102,"id1": 22043103,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043104, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "9",
+                "detail": [
+                    { "id": 22043105, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043106, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043107, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043108, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043109, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043110,"id1": 22043111,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043112,"id1": 22043113,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043114, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "10",
+                "detail": [
+                    { "id": 22043115, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043116, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043117, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043118, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043119, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043120,"id1": 22043121,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043122,"id1": 22043123,"caption": "Riwayat alergi :", "nama": "","nama1": "","type": "datetime,combobox" },
+                    { "id": 22043124, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            }
+        ]
+
+        $scope.listSadar = [
+            {
+                "id": 1,"nama": "➯",
+                "rincian": [
+                    { "nama": "Waktu pemberian", "type": "label" },
+                ],
+
+                "detail": [
+                    { "nama": "P", "type": "label" },
+                    { "nama": "Si", "type": "label"},
+                    { "nama": "S", "type": "label" },
+                    { "nama": "M", "type": "label" },
+                    { "nama": "P", "type": "label" },
+                    { "nama": "Si", "type": "label"},
+                    { "nama": "S", "type": "label" },
+                    { "nama": "M", "type": "label" },
+                    { "nama": "P", "type": "label" },
+                    { "nama": "Si", "type": "label"},
+                    { "nama": "S", "type": "label" },
+                    { "nama": "M", "type": "label" },
+                    { "nama": "P", "type": "label" },
+                    { "nama": "Si", "type": "label"},
+                    { "nama": "S", "type": "label" },
+                    { "nama": "M", "type": "label" },
+                    { "nama": "P", "type": "label" },
+                    { "nama": "Si", "type": "label"},
+                    { "nama": "S", "type": "label" },
+                    { "nama": "M", "type": "label" },
+                    { "nama": "P", "type": "label" },
+                    { "nama": "Si", "type": "label"},
+                    { "nama": "S", "type": "label" },
+                    { "nama": "M", "type": "label" },
+                    { "nama": "P", "type": "label" },
+                    { "nama": "Si", "type": "label"},
+                    { "nama": "S", "type": "label" },
+                    { "nama": "M", "type": "label" },
+                ]
+            },
+            {
+                "id": 2,"nama": "1",
+                "rincian": [
+                    { "id": 22043025, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043126, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043127, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043128, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043129, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043130, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043131, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043132, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043133, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043134, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043135, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043136, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043137, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043138, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043139, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043140, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043141, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043142, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043143, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043144, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043145, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043146, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043147, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043148, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043149, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043150, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043151, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043152, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043153, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "2",
+                "rincian": [
+                    { "id": 22043035, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043155, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043156, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043157, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043158, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043159, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043160, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043161, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043162, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043163, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043164, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043165, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043166, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043167, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043168, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043169, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043170, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043171, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043172, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043173, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043174, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043175, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043176, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043177, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043178, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043179, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043180, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043181, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043182, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "3",
+                "rincian": [
+                    { "id": 22043045, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043184, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043185, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043186, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043187, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043188, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043189, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043190, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043191, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043192, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043193, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043194, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043195, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043196, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043197, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043198, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043199, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043200, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043201, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043202, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043203, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043204, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043205, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043206, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043207, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043208, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043209, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043210, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043211, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "4",
+                "rincian": [
+                    { "id": 22043055, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043213, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043214, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043215, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043216, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043217, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043218, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043219, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043220, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043221, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043222, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043223, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043224, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043225, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043226, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043227, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043228, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043229, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043230, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043231, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043232, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043233, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043234, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043235, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043236, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043237, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043238, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043239, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043240, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "5",
+                "rincian": [
+                    { "id": 22043065, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043242, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043243, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043244, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043245, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043246, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043247, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043248, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043249, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043250, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043251, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043252, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043253, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043254, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043255, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043256, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043257, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043258, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043259, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043260, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043261, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043262, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043263, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043264, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043265, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043266, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043267, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043268, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043269, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "6",
+                "rincian": [
+                    { "id": 22043075, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043271, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043272, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043273, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043274, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043275, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043276, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043277, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043278, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043279, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043280, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043281, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043282, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043283, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043284, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043285, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043286, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043287, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043288, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043289, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043290, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043291, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043292, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043293, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043294, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043295, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043296, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043297, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043298, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "7",
+                "rincian": [
+                    { "id": 22043085, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043300, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043301, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043302, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043303, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043304, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043305, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043306, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043307, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043308, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043309, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043310, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043311, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043312, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043313, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043314, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043315, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043316, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043317, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043318, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043319, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043320, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043321, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043322, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043323, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043324, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043325, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043326, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043327, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "8",
+                "rincian": [
+                    { "id": 22043095, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043329, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043330, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043331, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043332, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043333, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043334, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043335, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043336, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043337, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043338, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043339, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043340, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043341, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043342, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043343, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043344, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043345, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043346, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043347, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043348, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043349, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043350, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043351, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043352, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043353, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043354, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043355, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043356, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "9",
+                "rincian": [
+                    { "id": 22043105, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043358, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043359, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043360, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043361, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043362, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043363, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043364, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043365, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043366, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043367, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043368, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043369, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043370, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043371, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043372, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043373, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043374, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043375, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043376, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043377, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043378, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043379, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043380, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043381, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043382, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043383, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043384, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043385, "nama": "m-7", "type": "textbox" }
+                ]
+            },
+            {
+                "id": 2,"nama": "10",
+                "rincian": [
+                    { "id": 22043115, "nama": "", "type": "textarea" },
+                ],
+
+                "detail": [
+                    { "id": 22043387, "nama": "p-1", "type": "textbox" },
+                    { "id": 22043388, "nama": "si-1", "type": "textbox"},
+                    { "id": 22043389, "nama": "s-1", "type": "textbox" },
+                    { "id": 22043390, "nama": "m-1", "type": "textbox" },
+                    { "id": 22043391, "nama": "p-2", "type": "textbox" },
+                    { "id": 22043392, "nama": "si-2", "type": "textbox"},
+                    { "id": 22043393, "nama": "s-2", "type": "textbox" },
+                    { "id": 22043394, "nama": "m-2", "type": "textbox" },
+                    { "id": 22043395, "nama": "p-3", "type": "textbox" },
+                    { "id": 22043396, "nama": "si-3", "type": "textbox"},
+                    { "id": 22043397, "nama": "s-3", "type": "textbox" },
+                    { "id": 22043398, "nama": "m-3", "type": "textbox" },
+                    { "id": 22043399, "nama": "p-4", "type": "textbox" },
+                    { "id": 22043400, "nama": "si-4", "type": "textbox"},
+                    { "id": 22043401, "nama": "s-4", "type": "textbox" },
+                    { "id": 22043402, "nama": "m-4", "type": "textbox" },
+                    { "id": 22043403, "nama": "p-5", "type": "textbox" },
+                    { "id": 22043404, "nama": "si-5", "type": "textbox"},
+                    { "id": 22043405, "nama": "s-5", "type": "textbox" },
+                    { "id": 22043406, "nama": "m-5", "type": "textbox" },
+                    { "id": 22043407, "nama": "p-6", "type": "textbox" },
+                    { "id": 22043408, "nama": "si-6", "type": "textbox"},
+                    { "id": 22043409, "nama": "s-6", "type": "textbox" },
+                    { "id": 22043410, "nama": "m-6", "type": "textbox" },
+                    { "id": 22043411, "nama": "p-7", "type": "textbox" },
+                    { "id": 22043412, "nama": "si-7", "type": "textbox"},
+                    { "id": 22043413, "nama": "s-7", "type": "textbox" },
+                    { "id": 22043414, "nama": "m-7", "type": "textbox" }
+                ]
+            }
+        ]
+
+        $scope.listpenerima = [
+            {
+                "id": 1, "nama": "1",
+                "detail": [
+                    { "id": 22043415, "nama": "Nama Penerima", "satuan": "", "type": "label" },
+                    { "id": 22043416,"id1": 22043417, "nama": "", "satuan": "", "type": "textarea,datetime" },
+                    { "id": 22043418,"id1": 22043419, "nama": "", "satuan": "", "type": "textarea,datetime" },
+                    { "id": 22043420,"id1": 22043421, "nama": "", "satuan": "", "type": "textarea,datetime" },
+                    { "id": 22043422,"id1": 22043423, "nama": "", "satuan": "", "type": "textarea,datetime" },
+                    { "id": 22043424,"id1": 22043425, "nama": "", "satuan": "", "type": "textarea,datetime" },
+                    { "id": 22043426,"id1": 22043427, "nama": "", "satuan": "", "type": "textarea,datetime" },
+                    { "id": 22043428,"id1": 22043429, "nama": "", "satuan": "", "type": "textarea,datetime" },
+                ]
+            },
+            {
+                "id": 1, "nama": "➯",
+                "detail": [
+                    { "id": 22043430, "nama": "TELAAH RESEP", "satuan": "", "type": "label" },
+                ]
+            },
+            {
+                "id": 1, "nama": "1",
+                "detail": [
+                    { "id": 22043431, "nama": "Ketepatan obat", "satuan": "", "type": "label" },
+                    { "id": 22043432, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043433, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043434, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043435, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043436, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043437, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043438, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "2",
+                "detail": [
+                    { "id": 22043439, "nama": "Dosis", "satuan": "", "type": "label" },
+                    { "id": 22043440, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043441, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043442, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043443, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043444, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043445, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043446, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "3",
+                "detail": [
+                    { "id": 22043447, "nama": "Frekuensi pemberian", "satuan": "", "type": "label" },
+                    { "id": 22043448, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043449, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043450, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043451, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043452, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043453, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043454, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "4",
+                "detail": [
+                    { "id": 22043455, "nama": "Rute pemberian", "satuan": "", "type": "label" },
+                    { "id": 22043456, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043457, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043458, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043459, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043460, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043461, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043462, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "5",
+                "detail": [
+                    { "id": 22043463, "nama": "Duplikasi terapeutik", "satuan": "", "type": "label" },
+                    { "id": 22043464, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043465, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043466, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043467, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043468, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043469, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043470, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "6",
+                "detail": [
+                    { "id": 22043471, "nama": "Alergi", "satuan": "", "type": "label" },
+                    { "id": 22043472, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043473, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043474, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043475, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043476, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043477, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043478, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "7",
+                "detail": [
+                    { "id": 22043479, "nama": "Interaksi obat", "satuan": "", "type": "label" },
+                    { "id": 22043480, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043481, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043482, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043483, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043484, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043485, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043486, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "8",
+                "detail": [
+                    { "id": 22043487, "nama": "Kontra indikasi", "satuan": "", "type": "label" },
+                    { "id": 22043488, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043489, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043490, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043491, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043492, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043493, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043494, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            },
+            {
+                "id": 1, "nama": "9",
+                "detail": [
+                    { "id": 22043495, "nama": "Kesesuaian FORNAS", "satuan": "", "type": "label" },
+                    { "id": 22043496, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043497, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043498, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043499, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043500, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043501, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043502, "nama": "", "satuan": "", "type": "textarea" },
+                ]
+            }
+        ]
+
+        $scope.listpenerima1 = [
+            {
+                "id": 1, "nama": "1",
+                "detail": [
+                    { "id": 22043503, "nama": "", "satuan": "", "type": "datetime" },
+                    { "id": 22043504, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043505, "nama": "", "satuan": "", "type": "textarea" },
+                    { "id": 22043506, "nama": "", "satuan": "", "type": "combobox" },
+                    { "id": 22043507, "nama": "", "satuan": "", "type": "combobox" },
+                ]
+            }
+        ]
+        
+         medifirstService.get("emr/get-rekam-medis-dynamic?emrid=" + $scope.cc.emrfk).then(function (e) {
+
+            var datas = e.data.kolom4
+
+            var detail = []
+            var arrayShiftJaga= []
+            var arrayShiftJaga2 = []
+            var arrayShiftJaga3= []
+            var sama = false
+            for (let i = 0; i < datas.length; i++) {
+                const element = datas[i];
+                sama = false
+
+                // ARRAY GEJALA
+                if (element.kodeexternal == 'nyeri') {
+                    for (let z = 0; z < arrayShiftJaga.length; z++) {
+                        const element2 = arrayShiftJaga[z];
+                        if (element2.namaexternal == element.namaexternal) {
+                            detail.push(element)
+                            element2.details = detail
+                            sama = true
+                        }
+                    }
+                    if (sama == false) {
+                        var datax = {
+                            caption: element.caption,
+                            cbotable: element.cbotable,
+                            child: [],
+                            emrfk: element.emrfk,
+                            headfk: element.headfk,
+                            id: element.id,
+                            kdprofile: element.kdprofile,
+                            kodeexternal: element.kodeexternal,
+                            namaemr: element.namaemr,
+                            namaexternal: element.namaexternal,
+                            nourut: element.nourut,
+                            reportdisplay: element.reportdisplay,
+                            satuan: element.satuan,
+                            statusenabled: element.statusenabled,
+                            style: element.style,
+                            type: element.type,
+
+                        }
+                        arrayShiftJaga.push(datax)
+                    }
+                }
+                //END ARRAY GEJALA
+                // ARRAY GEJALA
+                if (element.kodeexternal == 'shiftjaga2') {
+                    for (let z = 0; z < arrayShiftJaga2.length; z++) {
+                        const element2 = arrayShiftJaga2[z];
+                        if (element2.namaexternal == element.namaexternal) {
+                            detail.push(element)
+                            element2.details = detail
+                            sama = true
+                        }
+                    }
+                    if (sama == false) {
+                        var datax = {
+                            caption: element.caption,
+                            cbotable: element.cbotable,
+                            child: [],
+                            emrfk: element.emrfk,
+                            headfk: element.headfk,
+                            id: element.id,
+                            kdprofile: element.kdprofile,
+                            kodeexternal: element.kodeexternal,
+                            namaemr: element.namaemr,
+                            namaexternal: element.namaexternal,
+                            nourut: element.nourut,
+                            reportdisplay: element.reportdisplay,
+                            satuan: element.satuan,
+                            statusenabled: element.statusenabled,
+                            style: element.style,
+                            type: element.type,
+
+                        }
+                        arrayShiftJaga2.push(datax)
+                    }
+                }
+                //END ARRAY GEJALA
+            }
+            // ARRAY GEJALA
+            var gejalaKosongKeun = []
+            for (let k = 0; k < arrayShiftJaga.length; k++) {
+                const element = arrayShiftJaga[k];
+                for (let l = 0; l < datas.length; l++) {
+                    const element2 = datas[l];
+                    if (element2.namaexternal == element.namaexternal) {
+                        gejalaKosongKeun.push(element2)
+                        element.details = gejalaKosongKeun
+                    } else {
+                        gejalaKosongKeun = []
+                    }
+                }
+            }
+            $scope.listData1 = arrayShiftJaga
+            var gejalaKosongKeun = []
+            for (let k = 0; k < arrayShiftJaga2.length; k++) {
+                const element = arrayShiftJaga2[k];
+                for (let l = 0; l < datas.length; l++) {
+                    const element2 = datas[l];
+                    if (element2.namaexternal == element.namaexternal) {
+                        gejalaKosongKeun.push(element2)
+                        element.details = gejalaKosongKeun
+                    } else {
+                        gejalaKosongKeun = []
+                    }
+                }
+            }
+            $scope.listData2 = arrayShiftJaga2
+        })
+        var cacheNomorEMR = cacheHelper.get('cacheNomorEMR');
+        if (cacheNomorEMR != undefined) {
+            nomorEMR = cacheNomorEMR[0]
+            $scope.cc.norec_emr = nomorEMR
+            $scope.cc.tanggalEmrl = cacheNomorEMR[2]
+        }
+
+        
+        var chacePeriode = cacheHelper.get('cacheRekamMedis');
+        if (chacePeriode != undefined) {
+            $scope.cc.nocm = chacePeriode[0]
+            $scope.cc.namapasien = chacePeriode[1]
+            $scope.cc.jeniskelamin = chacePeriode[2]
+            $scope.cc.noregistrasi = chacePeriode[3]
+            $scope.cc.umur = chacePeriode[4]
+            $scope.cc.kelompokpasien = chacePeriode[5]
+            $scope.cc.tglregistrasi = chacePeriode[6]
+            $scope.cc.norec = chacePeriode[7]
+            $scope.cc.norec_pd = chacePeriode[8]
+            $scope.cc.objectkelasfk = chacePeriode[9]
+            $scope.cc.namakelas = chacePeriode[10]
+            $scope.cc.objectruanganfk = chacePeriode[11]
+            $scope.cc.namaruangan = chacePeriode[12]
+            $scope.cc.DataNoregis = chacePeriode[12]
+            $scope.cc.dokterdpjp = chacePeriode[16]
+            $scope.cc.iddpjp = chacePeriode[17]
+            $scope.cc.alamat = chacePeriode[15]
+            $scope.cc.tglLahir = chacePeriode[18]
+            if (nomorEMR == '-') {
+                $scope.cc.norec_emr = '-'
+            } else {
+                $scope.cc.norec_emr = nomorEMR
+            }
+        }
+        var chekedd = false
+
+
+
+        medifirstService.get("emr/get-emr-transaksi-detail?noemr=" + nomorEMR + "&emrfk=" + $scope.cc.emrfk, true).then(function (dat) {
+            $scope.item.obj = []
+            $scope.item.obj2 = []
+            var dataLoad = dat.data.data
+
+            
+            for (var i = 0; i <= dataLoad.length - 1; i++) {
+                if (parseFloat($scope.cc.emrfk) == dataLoad[i].emrfk) {
+
+                    if (dataLoad[i].type == "textbox") {
+                        $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                           
+                    }
+                    if (dataLoad[i].type == "checkbox") {
+                        chekedd = false
+                        if (dataLoad[i].value == '1') {
+                            chekedd = true
+                        }
+                        $scope.item.obj[dataLoad[i].emrdfk] = chekedd
+                    }
+                    if (dataLoad[i].type == "checkbox1") {
+                        chekedd = false
+                        if (dataLoad[i].value == '1') {
+                            chekedd = true
+                        }
+                        $scope.item.obj[dataLoad[i].emrdfk] = chekedd
+                    }
+                    if (dataLoad[i].type == "checkbox2") {
+                        chekedd = false
+                        if (dataLoad[i].value == '1') {
+                            chekedd = true
+                        }
+                        $scope.item.obj[dataLoad[i].emrdfk] = chekedd
+                    }
+
+                    if (dataLoad[i].type == "datetime") {
+                        $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                    }
+                    if (dataLoad[i].type == "time") {
+                        $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                    }
+                    if (dataLoad[i].type == "date") {
+                        $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                    }
+
+                    if (dataLoad[i].type == "checkboxtextbox") {
+                        $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                        $scope.item.obj2[dataLoad[i].emrdfk] = true
+                    }
+                    if (dataLoad[i].type == "textarea") {
+                        $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                    }
+                    if (dataLoad[i].type == "combobox") {
+                        var str = dataLoad[i].value
+                        if(str != undefined){
+                            var res = str.split("~");
+                            // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                            $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }        
+                        }
+
+                    }
+                    // pegawaiInputDetail = dataLoad[i].pegawaifk
+                }
+
+            }
+
+        })
+
+            $scope.Batal =function(){
+                $scope.item.obj=[]
+            }
+            $scope.kembali = function () {
+                $rootScope.showRiwayat()
+            }
+
+            $scope.Save = function () {
+
+                var arrobj = Object.keys($scope.item.obj)
+                var arrSave = []
+                for (var i = arrobj.length - 1; i >= 0; i--) {
+                    if ($scope.item.obj[parseInt(arrobj[i])] instanceof Date)
+                        $scope.item.obj[parseInt(arrobj[i])] = moment($scope.item.obj[parseInt(arrobj[i])]).format('YYYY-MM-DD HH:mm')
+                     // $scope.item.obj[parseInt(arrobj[i])] = moment($scope.item.obj[parseInt(arrobj[i])]).format('HH:mm')
+                    arrSave.push({ id: arrobj[i], values: $scope.item.obj[parseInt(arrobj[i])] })
+                }
+                $scope.cc.jenisemr = 'asesmen'
+                var jsonSave = {
+                    head: $scope.cc,
+                    data: arrSave
+                }
+                medifirstService.post('emr/save-emr-dinamis', jsonSave).then(function (e) {
+                    nomorEMR =e.data.data.noemr
+                    $rootScope.loadRiwayat()
+                    medifirstService.postLogging('EMR', 'norec emrpasien_t', e.data.data.norec,  
+                    'Catatan Pemberian Perbekalan Farmasi (CPPF) ' + ' dengan No EMR - ' +e.data.data.noemr +  ' pada No Registrasi ' 
+                    + $scope.cc.noregistrasi).then(function (res) {
+                    })
+                    // var arrStr = {
+                    //     0: e.data.data.noemr
+                    // }
+                    // cacheHelper.set('cacheNomorEMR', arrStr);
+                });
+            }
+              
+            $scope.cetakBlade = function(){
+                if (norecEMR == '')
+                {
+                    toastr.error("Data Tidak Ditemukan");
+                    return;
+                }
+
+              var local =JSON.parse(localStorage.getItem('profile')) 
+              var nama = medifirstService.getPegawaiLogin().namaLengkap
+          
+               window.open(baseTransaksi + 'report/skrining-covid19?nocm='
+                   + $scope.cc.nocm + $scope.cc.norec +'&emr=' + norecEMR
+                   +'&emrfk='+  $scope.cc.emrfk
+                   +'&kdprofile='+local.id 
+                   +'&nama='+nama,  '_blank');
+           }
+         }
+     ]);
+ });
