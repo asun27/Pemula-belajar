@@ -1,0 +1,125 @@
+HTML
+<div class="grid_12" style="margin-top: 20px; text-align: center">
+        <table>
+            <tr>
+                <th colspan="10" style="text-align: center">Maturitas neuromuskular</th>
+            </tr>
+            <tr>
+                <th style="text-align: center; width: 30px;">No</th>
+                <th style="text-align: center; width: 130px;">Posisi</th>
+                <th style="text-align: center; width: 100px;">-1</th>
+                <th style="text-align: center; width: 100px;">0</th>
+                <th style="text-align: center; width: 100px;">1</th>
+                <th style="text-align: center; width: 100px;">2</th>
+                <th style="text-align: center; width: 100px;">3</th>
+                <th style="text-align: center; width: 100px;">4</th>
+                <th style="text-align: center; width: 100px;">5</th>
+                <th style="text-align: center; width: 80px;">Score</th>
+            </tr>
+            <tr ng-repeat="tanya in listAsuhan | orderBy:'id'">
+                <td style="text-align: center">{{tanya.id}}</td>
+                <td>{{tanya.nama}}</td>
+                <td ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-default>
+                            <div class="grid_12" style="text-align: center">
+                                <img ng-src="{{jawab.img}}" style="width: 80%;" ng-click="getSkorNutrisi(jawab)">
+                            </div>
+                            <div  class="grid_12" style="text-align: center; zoom: 150%;"> 
+                                <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"
+                                    ng-model="item.obj[jawab.id]" ng-click="getSkorNutrisi(jawab)">
+                                <label class="k-checkbox-label" for="item.obj{{jawab.id}}">
+                                    &nbsp;{{jawab.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center" ng-repeat="jawab in tanya.text | orderBy:'id'" ng-init="jawabIndex = $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-default>
+                            <div class="grid_8"  style="text-align: center;margin-left: 20px;">
+                                <input style="width: 100%;" c-text-box type="text" filter="" 
+                                class="k-textbox" ng-model="item.obj[jawab.id]" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+Java script
+
+  $scope.listAsuhan = [
+            {
+              "id": 1,
+              "nama": "Sikap Tubuh",
+              "detail": [
+                  { "id": 22047511, "baris": "0","img": "../app/images/emr/bodyboy.png", "descNilai": "-1" },
+                  { "id": 22047512, "baris": "0","img": "../app/images/emr/bodyboy.png", "descNilai": "0" },
+                  { "id": 22047513, "baris": "0","img": "../app/images/emr/bodyboy.png", "descNilai": "1" },
+                  { "id": 22047514, "baris": "0","img": "../app/images/emr/bodyboy.png", "descNilai": "2" },
+                  { "id": 22047515, "baris": "0","img": "../app/images/emr/bodyboy.png", "descNilai": "3" },
+                  { "id": 22047516, "baris": "0","img": "../app/images/emr/bodyboy.png", "descNilai": "4" },
+                  { "id": 22047517, "baris": "0","img": "../app/images/emr/bodyboy.png", "descNilai": "5" },
+              ],
+              "text": [
+                { "id": 22047518, "type": "textbox"},
+              ]
+            }
+];
+ $scope.getSkorNutrisi = function(stat) {
+            var arrobj = Object.keys($scope.item.obj);
+            
+            for (var i = arrobj.length - 1; i >= 0; i--) {
+                if (arrobj[i] == stat.id) {
+                    if (!$scope.item.obj[parseFloat(arrobj[i])]) {
+                        if (stat.baris == "0") {
+                            $scope.skorNutrisi = null;
+                        } else if (stat.baris == "1") {
+                            $scope.skorNutrisi1 = null;
+                        } else if (stat.baris == "2") {
+                            $scope.skorNutrisi2 = null;
+                        } else if (stat.baris == "3") {
+                            $scope.skorNutrisi3 = null;
+                        } else if (stat.baris == "4") {
+                            $scope.skorNutrisi4 = null;
+                        } else if (stat.baris == "5") {
+                            $scope.skorNutrisi5 = null;
+                        }
+                    } else {
+                        if (stat.descNilai == null) {
+                            break;
+                        }
+                        if (stat.baris == "0") {
+                            $scope.skorNutrisi = parseFloat(stat.descNilai);
+                        } else if (stat.baris == "1") {
+                            $scope.skorNutrisi1 = parseFloat(stat.descNilai);
+                        } else if (stat.baris == "2") {
+                            $scope.skorNutrisi2 = parseFloat(stat.descNilai);
+                        } else if (stat.baris == "3") {
+                            $scope.skorNutrisi3 = parseFloat(stat.descNilai);
+                        } else if (stat.baris == "4") {
+                            $scope.skorNutrisi4 = parseFloat(stat.descNilai);
+                        } else if (stat.baris == "5") {
+                            $scope.skorNutrisi5 = parseFloat(stat.descNilai);
+                        }
+                        
+                        for (var j = 0; j < arrobj.length; j++) {
+                            if (arrobj[j] != arrobj[i]) {
+                                $scope.item.obj[parseFloat(arrobj[j])] = false;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            
+            $scope.item.obj[22047518] = $scope.skorNutrisi;
+            $scope.item.obj[22047526] = $scope.skorNutrisi1;
+            $scope.item.obj[22047534] = $scope.skorNutrisi2;
+            $scope.item.obj[22047542] = $scope.skorNutrisi3;
+            $scope.item.obj[22047550] = $scope.skorNutrisi4;
+            $scope.item.obj[22047558] = $scope.skorNutrisi5;
+        };
