@@ -1,0 +1,1739 @@
+html code
+<style type="text/css">
+    fieldset {
+        border-radius: 5px;
+        border: 1px solid #228be6;
+    }
+
+    .k-slider-horizontal {
+        display: inline-block;
+        float: left;
+        width: 450px;
+        height: 26px;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #929191;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+    }
+
+    .k-slider {
+
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 1%;
+        margin-bottom: 5%;
+        display: inline-block;
+    }
+
+    .activeBtn {
+        background-color: #10c4b2;
+        color: #ffffff;
+    }
+</style>
+
+<div class="grid_12">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate> Early Warning Score (EWS)</div>
+    </div>
+
+    <div class="grid_12">
+        <fieldset style="margin-top: 10px; ">
+        <legend><b>Grafik</b></legend>
+        
+            <!-- <div class="grid_12">
+                <div kendo-chart k-legend="{ position: 'bottom' }" k-series-defaults="{ type: 'area' }" k-series="[
+                    { field: 'nilai', name: 'Tanda Tanda Vital' }
+                ]" k-data-source="tekananDarah" style="height: 250px;"></div>
+                <div id="chartNadi" style="height: 250px;"></div>
+            </div> -->
+
+            <!-- <div class="grid_12" style="margin-top: 20px">
+                <table style="width:100%;color: #4c5356;">
+                <tr ng-repeat="list in listData | orderBy:'id'" ng-init="listIndex = $index">
+                    <td style="font-weight: bold;">{{list.nama}}</td>
+                    <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                        <div class="grid_12">
+                            <div ng-switch on="jawab.type">
+                                <div ng-switch-when="textbox">
+                                    <div class="parentKeteranganFieldTambahan">
+                                        <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                        <label class="keteranganFieldTambahan"
+                                            style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="label">
+                                    <label class="k-label"> {{jawab.nama}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </table>
+            </div>
+             -->
+        <div class="grid_12" style="margin-top: 10px;">
+            <div>
+                <Label><b>Note Keterangan :</b></Label>
+                <Label>Pagi = (P) ,</Label>
+                <Label>Siang = (Si) ,</Label>
+                <Label>Sore = (S) ,</Label>
+                <Label>Malam = (M) </Label>
+            </div>
+
+            <table style="width:100%;color: #4c5356; margin-top: 10px;">
+                <tr>
+                    <td colspan="32" style="font-weight: bold; width: 50px;color: red;" >Pencatatan observasi menggunakan Early Warning Score (EWS) untuk pasien dengan usia > 12 Tahun</td>
+                </tr>
+                <tr ng-repeat="list in listDate | orderBy:'id'" ng-init="listIndex = $index">
+                    <td colspan="4"  style="font-weight: bold;">Tanggal / Bulan</td>
+                    <th colspan="4" rowspan="3" style="{{list.style}}" ng-repeat="jawab in list.detail" ng-init="jawabIndex = $index">
+                        <div class="grid_12">
+                            <div ng-switch on="jawab.type">
+                                <div ng-switch-when="date">
+                                    <input style="width: 100%" k-ng-model="item.obj[jawab.id]" kendo-datepicker
+                                        placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" parsedate="yyyy-MM-dd" />
+                                </div>
+                                <div ng-switch-when="textbox">
+                                    <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="4" style="font-weight: bold; width: 50px;" >EWS</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;" >0</td>
+                    <td style="font-weight: bold;" >1</td>
+                    <td style="font-weight: bold;" >2</td>
+                    <td style="font-weight: bold;" >3</td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="4" style="font-weight: bold;">Tingkat Kesadaran ➜</td>
+                </tr>
+                <tr ng-repeat="list in listSadar | orderBy:'id'" ng-init="listIndex = $index">
+                    <td colspan="2" style="font-weight: bold;">{{list.nama}}</td>
+                    <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                        <div class="grid_12">
+                            <div ng-switch on="jawab.type">
+                                <div ng-switch-when="textbox">
+                                    <div class="parentKeteranganFieldTambahan">
+                                        <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                        <label class="keteranganFieldTambahan"
+                                            style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="checkbox" style="text-align: center;">
+                                    <input type="checkbox" class="k-checkbox" id="item.obj{{jawab.id}}"ng-model="item.obj[jawab.id]" ng-click="getSkor(jawab)">
+                                    <label class="k-checkbox-label" for="item.obj{{jawab.id}}"><!-- &nbsp;{{jawab.nama}} --></label>
+                                </div>
+                                <div ng-switch-when="label">
+                                    <label class="k-label"> {{jawab.nama}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold;" >Tekanan Darah (Sistolik) ➜</td>
+                        <td colspan="28">
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <!-- <div kendo-chart k-legend="{ position: 'bottom' }" k-series-defaults="{ type: 'area' }" k-series="[
+                                        { field: 'nilai', name: 'Tanda Tanda Vital' }
+                                    ]" k-data-source="tekananDarah" style="height: 250px;"></div> -->
+                                    <div id="chartTknDarah" style="height: 400px;"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="list in listData0 | orderBy:'id'" ng-init="listIndex = $index">
+                        <td colspan="4"  style="font-weight: bold;">{{list.nama}}</td>
+                        <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                            <div class="grid_12">
+                                <div ng-switch on="jawab.type">
+                                    <div ng-switch-when="textbox">
+                                        <div class="parentKeteranganFieldTambahan">
+                                            <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                            <label class="keteranganFieldTambahan"
+                                                style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="label">
+                                        <label class="k-label"> {{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tr>
+                <tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold;" >Grafik Nadi ➜</td>
+                        <td colspan="28">
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <!-- <div kendo-chart k-legend="{ position: 'bottom' }" k-series-defaults="{ type: 'area' }" k-series="[
+                                        { field: 'nilai', name: 'Tanda Tanda Vital' }
+                                    ]" k-data-source="tekananDarah" style="height: 250px;"></div> -->
+                                    <div id="chartNadi" style="height: 400px;"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="list in listData1 | orderBy:'id'" ng-init="listIndex = $index">
+                        <td colspan="4"  style="font-weight: bold;">{{list.nama}}</td>
+                        <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                            <div class="grid_12">
+                                <div ng-switch on="jawab.type">
+                                    <div ng-switch-when="textbox">
+                                        <div class="parentKeteranganFieldTambahan">
+                                            <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                            <label class="keteranganFieldTambahan"
+                                                style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="label">
+                                        <label class="k-label"> {{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tr>
+
+                <tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold;" >Grafik Pernafasan  ➜</td>
+                        <td colspan="28">
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <!-- <div kendo-chart k-legend="{ position: 'bottom' }" k-series-defaults="{ type: 'area' }" k-series="[
+                                            { field: 'nilai', name: 'Tanda Tanda Vital' }
+                                        ]" k-data-source="tekananDarah" style="height: 250px;"></div> -->
+                                    <div id="chartNafas" style="height: 400px;"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="list in listData2 | orderBy:'id'" ng-init="listIndex = $index">
+                        <td colspan="4"  style="font-weight: bold;">{{list.nama}}</td>
+                        <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                            <div class="grid_12">
+                                <div ng-switch on="jawab.type">
+                                    <div ng-switch-when="textbox">
+                                        <div class="parentKeteranganFieldTambahan">
+                                            <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                            <label class="keteranganFieldTambahan"
+                                                style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="label">
+                                        <label class="k-label"> {{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tr>
+
+                <tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold;" >Grafik Suhu  ➜</td>
+                        <td colspan="28">
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <!-- <div kendo-chart k-legend="{ position: 'bottom' }" k-series-defaults="{ type: 'area' }" k-series="[
+                                            { field: 'nilai', name: 'Tanda Tanda Vital' }
+                                        ]" k-data-source="tekananDarah" style="height: 250px;"></div> -->
+                                    <div id="chartSuhu" style="height: 400px;"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="list in listData3 | orderBy:'id'" ng-init="listIndex = $index">
+                        <td colspan="4"  style="font-weight: bold;">{{list.nama}}</td>
+                        <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                            <div class="grid_12">
+                                <div ng-switch on="jawab.type">
+                                    <div ng-switch-when="textbox">
+                                        <div class="parentKeteranganFieldTambahan">
+                                            <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                            <label class="keteranganFieldTambahan"
+                                                style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="label">
+                                        <label class="k-label"> {{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tr>
+
+                <tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold;" >Grafik SpO2  ➜</td>
+                        <td colspan="28">
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <!-- <div kendo-chart k-legend="{ position: 'bottom' }" k-series-defaults="{ type: 'area' }" k-series="[
+                                            { field: 'nilai', name: 'Tanda Tanda Vital' }
+                                        ]" k-data-source="tekananDarah" style="height: 250px;"></div> -->
+                                    <div id="chartSpO2" style="height: 400px;"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="list in listData4 | orderBy:'id'" ng-init="listIndex = $index">
+                        <td colspan="4"  style="font-weight: bold;">{{list.nama}}</td>
+                        <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                            <div class="grid_12">
+                                <div ng-switch on="jawab.type">
+                                    <div ng-switch-when="textbox">
+                                        <div class="parentKeteranganFieldTambahan">
+                                            <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                            <label class="keteranganFieldTambahan"
+                                                style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="label">
+                                        <label class="k-label"> {{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tr>
+                <tr ng-repeat="list in listData5 | orderBy:'id'" ng-init="listIndex = $index">
+                    <td colspan="4"  style="font-weight: bold;">{{list.nama}}</td>
+                    <td colspan="{{list.colspan}}" style="text-align: center;" ng-repeat="jawab in list.detail">
+                        <div class="grid_12">
+                            <div ng-switch on="jawab.type">
+                                <div ng-switch-when="textbox">
+                                    <div class="parentKeteranganFieldTambahan">
+                                        <input class="k-textbox" ng-model="item.obj[jawab.id]" type="text" />
+                                        <label class="keteranganFieldTambahan"
+                                            style="margin-top: 5px;margin-right: 20px">{{jawab.satuan}}</label>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="label">
+                                    <label class="k-label"> {{jawab.nama}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+                <div style="margin-top: 5px;"><Label><b>Catatan: * Coret yang tidak perlu V=Voice(suara), P=Pain(Kesakitan), U=Unresponsive(Kurang memberi respon)</b></Label></div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="grid_12">
+        <div class="grid_8"></div>
+        <div class="grid_4">
+            <fieldset style="margin-top:10px;border-radius: 10px;height: 220px;">
+                <div style="padding: 20px;">
+                    <div class="grid_12">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Tanggal dan Jam"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input style="width: 100%" k-ng-model="item.obj[22042634]" kendo-datetimepicker
+                                placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
+                                parsedate="yyyy-MM-dd HH:mm" />
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Perawat"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22042635]"
+                                k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listPegawai" />
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Dokter"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.obj[22042636]"
+                                k-data-text-field="'text'" k-data-value-field="'value'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listPegawai" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div class="grid_12">
+    <div ng-include='"../app/module/EMR/TemplateButtonDinamis" '></div>
+</div>
+
+javascript code
+define(['initialize'], function (initialize) {
+    'use strict';
+    initialize.controller('EarlyWarningScoreCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'CacheHelper', 'DateHelper', 'MedifirstService',
+        function ($q, $rootScope, $scope, ModelItem, $state, cacheHelper, dateHelper, medifirstService) {
+
+            $scope.noCM = $state.params.noCM;
+            $scope.tombolSimpanVis = true
+            $scope.noRecPap = cacheHelper.get('noRecPap');
+            $scope.totalSkor = 0
+            $scope.totalSkor2 = 0
+            $scope.cc = {}
+            var nomorEMR = '-'
+            $scope.cc.emrfk = 380024
+            var dataLoad = []
+            var norecEMR = ''
+            var cacheNomorEMR = cacheHelper.get('cacheNomorEMR');
+            var cacheNoREC = cacheHelper.get('cacheNOREC_EMR');
+            if(cacheNoREC!= undefined){
+                norecEMR = cacheNomorEMR[1]
+            }
+            if (cacheNomorEMR != undefined) {
+                nomorEMR = cacheNomorEMR[0]
+                norecEMR = cacheNomorEMR[1]
+                $scope.cc.norec_emr = nomorEMR
+            }
+            medifirstService.getPart('emr/get-datacombo-part-pegawai', true, true, 20).then(function (data) {
+                $scope.listPegawai = data
+            })
+            medifirstService.getPart('emr/get-datacombo-part-kelas', true, true, 20).then(function (data) {
+                $scope.listKelas = data
+
+            })
+            medifirstService.getPart('emr/get-datacombo-part-ruangan-pelayanan', true, true, 20).then(function (data) {
+                $scope.listRuang = data
+
+            })
+           
+            var seriesDarah = []
+            var seriesNadi = []
+            var sesiesPernafasan = []
+            var sesiesSuhu = []
+            var sesiesSpO2 = []
+
+            loadChart()
+            function loadChart() {
+                $("#chartTknDarah").kendoChart({
+                    title: {
+                        text: "Tekanan Darah"
+                    },
+                    legend: {
+                        position: "top"
+                    },
+                    series: [
+                        {
+                            type: "line",
+                            data: seriesDarah,
+                            name: "Darah",
+                            color: "#FF00FF",
+
+                    }],
+                    valueAxes: [{
+                        title: { text: "" },
+                        min: 51,
+                        max: 240,
+                        majorUnit: 10
+                    }],
+                    categoryAxis: {
+                        categories: ['P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M'],
+                        axisCrossingValues: [0, 35]
+                    }
+                });
+
+                $("#chartNadi").kendoChart({
+                    title: {
+                        text: "Grafik Nadi"
+                    },
+                    legend: {
+                        position: "top"
+                    },
+                    series: [
+                        {
+                            type: "line",
+                            data: seriesNadi,
+                            name: "Nadi",
+                            color: "#fc0303",
+
+                    }],
+                    valueAxes: [{
+                        title: { text: "" },
+                        min: 41,
+                        max: 150,
+                        majorUnit: 10
+                    }],
+                    categoryAxis: {
+                        categories: ['P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M'],
+                        axisCrossingValues: [0, 35]
+                    }
+                });
+
+                $("#chartNafas").kendoChart({
+                    title: {
+                        text: "Grafik Pernafasan"
+                    },
+                    legend: {
+                        position: "top"
+                    },
+                    series: [{
+                        type: "line",
+                        data: sesiesPernafasan,
+                        name: "Pernafasan",
+                        color: "#FFD700",
+
+                    }],
+                    valueAxes: [
+                        {
+                        title: { text: "" },
+                        min: 8,
+                        max: 30,
+                        majorUnit: 2
+                    }],
+                    categoryAxis: {
+                        categories: ['P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M'],
+                        axisCrossingValues: [0, 35]
+                    }
+                });
+
+                $("#chartSuhu").kendoChart({
+                    title: {
+                        text: "Grafik Suhu"
+                    },
+                    legend: {
+                        position: "top"
+                    },
+                    series: [{
+                        type: "line",
+                        data: sesiesSuhu,
+                        name: "Suhu",
+                        color: "#008000",
+
+                    }],
+                    valueAxes: [
+                        {
+                        title: { text: "" },
+                        min: 30,
+                        max: 40,
+                        majorUnit: 2
+                    }],
+                    categoryAxis: {
+                        categories: ['P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M'],
+                        axisCrossingValues: [0, 35]
+                    }
+                });
+
+                $("#chartSpO2").kendoChart({
+                    title: {
+                        text: "Grafik SpO2"
+                    },
+                    legend: {
+                        position: "top"
+                    },
+                    series: [{
+                        type: "line",
+                        data: sesiesSpO2,
+                        name: "SpO2",
+                        color: "#0328fc",
+
+                    }],
+                    valueAxes: [
+                        {
+                        title: { text: "" },
+                        min: 90,
+                        max: 110,
+                        majorUnit: 2
+                    }],
+                    categoryAxis: {
+                        categories: ['P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M', 'P','Si','S','M'],
+                        axisCrossingValues: [0, 35]
+                    }
+                });
+            }
+
+            $scope.listDate = [
+                {
+                    "id": 1, "nama": "Tgl / Bln", "style": "text-align: center;background-color: #dedfe2d3;",
+                    "detail": [
+                        { "id": 22042200, "nama": "h-1", "type": "date" },
+                        { "id": 22042201, "nama": "h-2", "type": "date" },
+                        { "id": 22042202, "nama": "h-3", "type": "date" },
+                        { "id": 22042203, "nama": "h-4", "type": "date" },
+                        { "id": 22042204, "nama": "h-5", "type": "date" },
+                        { "id": 22042205, "nama": "h-6", "type": "date" },
+                        { "id": 22042206, "nama": "h-7", "type": "date" },
+                    ]
+                }
+            ]
+
+            // $scope.listTime = [
+            //     {
+            //         "id": 1, "nama": "Waktu", "style": "text-align: center;background-color: #dedfe2d3;",
+            //         "detail": [
+            //             { "id": 22042207, "nama": "h-1", "type": "time" },
+            //             { "id": 22042208, "nama": "h-2", "type": "time" },
+            //             { "id": 22042209, "nama": "h-3", "type": "time" },
+            //             { "id": 22042210, "nama": "h-4", "type": "time" },
+            //             { "id": 22042211, "nama": "h-5", "type": "time" },
+            //             { "id": 22042212, "nama": "h-6", "type": "time" },
+            //             { "id": 22042213, "nama": "h-7", "type": "time" },
+            //         ]
+            //     }
+            // ]
+
+            $scope.listSadar = [
+                {
+                    "id": 1, "nama": "Waktu",
+                    "detail": [
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Sadar",
+                    "detail": [
+                        { "id": 22042214, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042215, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042216, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042217, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042218, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042219, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042220, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042221, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042222, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042223, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042224, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042225, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042226, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042227, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042228, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042229, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042230, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042231, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042232, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042233, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042234, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042235, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042236, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042237, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042238, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042239, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042240, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042241, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 3, "nama": "V/P/U",
+                    "detail": [
+                        { "id": 22042242, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042243, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042244, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042245, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042246, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042247, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042248, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042249, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042250, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042251, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042252, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042253, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042254, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042255, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042256, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042257, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042258, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042259, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042260, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042261, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042262, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042263, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042264, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042265, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042266, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042267, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042268, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042269, "nama": "m-7", "type": "textbox" },
+                    ]
+                }
+            ]
+
+            $scope.listData0 = [
+                {
+                    "id": 1, "nama": "",
+                    "detail": [
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Tekanan Darah",
+                    "detail": [
+                        { "id": 22042270, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042271, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042272, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042273, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042274, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042275, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042276, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042277, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042278, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042279, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042280, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042281, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042282, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042283, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042284, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042285, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042286, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042287, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042288, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042289, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042290, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042291, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042292, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042293, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042294, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042295, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042296, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042297, "nama": "m-7", "type": "textbox" },
+                    ]
+                }
+            ]
+
+            $scope.listData1 = [
+                {
+                    "id": 1, "nama": "",
+                    "detail": [
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Tekanan Nadi",
+                    "detail": [
+                        { "id": 22042298, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042299, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042300, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042301, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042302, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042303, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042304, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042305, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042306, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042307, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042308, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042309, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042310, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042311, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042312, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042313, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042314, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042315, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042316, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042317, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042318, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042319, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042320, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042321, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042322, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042323, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042324, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042325, "nama": "m-7", "type": "textbox" },
+                    ]
+                }
+            ]
+
+            $scope.listData2 = [
+                {
+                    "id": 1, "nama": "",
+                    "detail": [
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Tekanan Pernafasan",
+                    "detail": [
+                        { "id": 22042326, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042327, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042328, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042329, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042330, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042331, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042332, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042333, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042334, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042335, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042336, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042337, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042338, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042339, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042340, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042341, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042342, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042343, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042344, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042345, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042346, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042347, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042348, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042349, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042350, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042351, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042352, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042353, "nama": "m-7", "type": "textbox" },
+                    ]
+                }
+            ]
+
+            $scope.listData3 = [
+                {
+                    "id": 1, "nama": "",
+                    "detail": [
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Tekanan Suhu",
+                    "detail": [
+                        { "id": 22042354, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042355, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042356, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042357, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042358, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042359, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042360, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042361, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042362, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042363, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042364, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042365, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042366, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042367, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042368, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042369, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042370, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042371, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042372, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042373, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042374, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042375, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042376, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042377, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042378, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042379, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042380, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042381, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+            ]
+
+            $scope.listData4 = [
+                {
+                    "id": 1, "nama": "",
+                    "detail": [
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                        { "nama": "P", "type": "label" },
+                        { "nama": "Si", "type": "label"},
+                        { "nama": "S", "type": "label" },
+                        { "nama": "M", "type": "label" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Tekanan SpO2",
+                    "detail": [
+                        { "id": 22042382, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042383, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042384, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042385, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042386, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042387, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042388, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042389, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042390, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042391, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042392, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042393, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042394, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042395, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042396, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042397, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042398, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042399, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042400, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042401, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042402, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042403, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042404, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042405, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042406, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042407, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042408, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042409, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+            ]
+
+            $scope.listData5 = [
+                {
+                    "id": 1, "nama": "Oksigen",
+                    "detail": [
+                        { "id": 22042410, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042411, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042412, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042413, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042414, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042415, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042416, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042417, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042418, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042419, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042420, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042421, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042422, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042423, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042424, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042425, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042426, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042427, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042428, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042429, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042430, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042431, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042432, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042433, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042434, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042435, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042436, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042437, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Total Early Warning Score",
+                    "detail": [
+                        { "id": 22042438, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042439, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042440, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042441, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042442, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042443, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042444, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042445, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042446, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042447, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042448, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042449, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042450, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042451, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042452, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042453, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042454, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042455, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042456, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042457, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042458, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042459, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042460, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042461, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042462, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042463, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042464, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042465, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Skala Jatuh",
+                    "detail": [
+                        { "id": 22042466, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042467, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042468, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042469, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042470, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042471, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042472, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042473, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042474, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042475, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042476, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042477, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042478, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042479, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042480, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042481, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042482, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042483, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042484, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042485, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042486, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042487, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042488, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042489, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042490, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042491, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042492, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042493, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Skala Nyeri",
+                    "detail": [
+                        { "id": 22042494, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042495, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042496, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042497, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042498, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042499, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042500, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042501, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042502, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042503, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042504, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042505, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042506, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042507, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042508, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042509, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042510, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042511, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042512, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042513, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042514, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042515, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042516, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042517, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042518, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042519, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042520, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042521, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Intake",
+                    "detail": [
+                        { "id": 22042522, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042523, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042524, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042525, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042526, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042527, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042528, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042529, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042530, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042531, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042532, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042533, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042534, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042535, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042536, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042537, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042538, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042539, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042540, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042541, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042542, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042543, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042544, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042545, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042546, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042547, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042548, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042549, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Output",
+                    "detail": [
+                        { "id": 22042550, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042551, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042552, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042553, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042554, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042555, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042556, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042557, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042558, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042559, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042560, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042561, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042562, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042563, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042564, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042565, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042566, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042567, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042568, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042569, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042570, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042571, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042572, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042573, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042574, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042575, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042576, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042577, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                {
+                    "id": 2, "nama": "Diit",
+                    "detail": [
+                        { "id": 22042578, "nama": "p-1", "type": "textbox" },
+                        { "id": 22042579, "nama": "si-1", "type": "textbox"},
+                        { "id": 22042580, "nama": "s-1", "type": "textbox" },
+                        { "id": 22042581, "nama": "m-1", "type": "textbox" },
+                        { "id": 22042582, "nama": "p-2", "type": "textbox" },
+                        { "id": 22042583, "nama": "si-2", "type": "textbox"},
+                        { "id": 22042584, "nama": "s-2", "type": "textbox" },
+                        { "id": 22042585, "nama": "m-2", "type": "textbox" },
+                        { "id": 22042586, "nama": "p-3", "type": "textbox" },
+                        { "id": 22042587, "nama": "si-3", "type": "textbox"},
+                        { "id": 22042588, "nama": "s-3", "type": "textbox" },
+                        { "id": 22042589, "nama": "m-3", "type": "textbox" },
+                        { "id": 22042590, "nama": "p-4", "type": "textbox" },
+                        { "id": 22042591, "nama": "si-4", "type": "textbox"},
+                        { "id": 22042592, "nama": "s-4", "type": "textbox" },
+                        { "id": 22042593, "nama": "m-4", "type": "textbox" },
+                        { "id": 22042594, "nama": "p-5", "type": "textbox" },
+                        { "id": 22042595, "nama": "si-5", "type": "textbox"},
+                        { "id": 22042596, "nama": "s-5", "type": "textbox" },
+                        { "id": 22042597, "nama": "m-5", "type": "textbox" },
+                        { "id": 22042598, "nama": "p-6", "type": "textbox" },
+                        { "id": 22042599, "nama": "si-6", "type": "textbox"},
+                        { "id": 22042600, "nama": "s-6", "type": "textbox" },
+                        { "id": 22042601, "nama": "m-6", "type": "textbox" },
+                        { "id": 22042602, "nama": "p-7", "type": "textbox" },
+                        { "id": 22042603, "nama": "si-7", "type": "textbox"},
+                        { "id": 22042604, "nama": "s-7", "type": "textbox" },
+                        { "id": 22042605, "nama": "m-7", "type": "textbox" },
+                    ]
+                },
+                // {
+                //     "id": 2, "nama": "",
+                //     "detail": [
+                //         { "id": 22042606, "nama": "p-1", "type": "textbox" },
+                //         { "id": 22042607, "nama": "si-1", "type": "textbox"},
+                //         { "id": 22042608, "nama": "s-1", "type": "textbox" },
+                //         { "id": 22042609, "nama": "m-1", "type": "textbox" },
+                //         { "id": 22042610, "nama": "p-2", "type": "textbox" },
+                //         { "id": 22042611, "nama": "si-2", "type": "textbox"},
+                //         { "id": 22042612, "nama": "s-2", "type": "textbox" },
+                //         { "id": 22042613, "nama": "m-2", "type": "textbox" },
+                //         { "id": 22042614, "nama": "p-3", "type": "textbox" },
+                //         { "id": 22042615, "nama": "si-3", "type": "textbox"},
+                //         { "id": 22042616, "nama": "s-3", "type": "textbox" },
+                //         { "id": 22042617, "nama": "m-3", "type": "textbox" },
+                //         { "id": 22042618, "nama": "p-4", "type": "textbox" },
+                //         { "id": 22042619, "nama": "si-4", "type": "textbox"},
+                //         { "id": 22042620, "nama": "s-4", "type": "textbox" },
+                //         { "id": 22042621, "nama": "m-4", "type": "textbox" },
+                //         { "id": 22042622, "nama": "p-5", "type": "textbox" },
+                //         { "id": 22042623, "nama": "si-5", "type": "textbox"},
+                //         { "id": 22042624, "nama": "s-5", "type": "textbox" },
+                //         { "id": 22042625, "nama": "m-5", "type": "textbox" },
+                //         { "id": 22042626, "nama": "p-6", "type": "textbox" },
+                //         { "id": 22042627, "nama": "si-6", "type": "textbox"},
+                //         { "id": 22042628, "nama": "s-6", "type": "textbox" },
+                //         { "id": 22042629, "nama": "m-6", "type": "textbox" },
+                //         { "id": 22042630, "nama": "p-7", "type": "textbox" },
+                //         { "id": 22042631, "nama": "si-7", "type": "textbox"},
+                //         { "id": 22042632, "nama": "s-7", "type": "textbox" },
+                //         { "id": 22042633, "nama": "m-7", "type": "textbox" },
+                //     ]
+                // },
+            ]
+
+            $scope.listDarah = [
+                { "id": 22042270, "nama": "p-1", "type": "textbox" },
+                { "id": 22042271, "nama": "si-1", "type": "textbox"},
+                { "id": 22042272, "nama": "s-1", "type": "textbox" },
+                { "id": 22042273, "nama": "m-1", "type": "textbox" },
+                { "id": 22042274, "nama": "p-2", "type": "textbox" },
+                { "id": 22042275, "nama": "si-2", "type": "textbox"},
+                { "id": 22042276, "nama": "s-2", "type": "textbox" },
+                { "id": 22042277, "nama": "m-2", "type": "textbox" },
+                { "id": 22042278, "nama": "p-3", "type": "textbox" },
+                { "id": 22042279, "nama": "si-3", "type": "textbox"},
+                { "id": 22042280, "nama": "s-3", "type": "textbox" },
+                { "id": 22042281, "nama": "m-3", "type": "textbox" },
+                { "id": 22042282, "nama": "p-4", "type": "textbox" },
+                { "id": 22042283, "nama": "si-4", "type": "textbox"},
+                { "id": 22042284, "nama": "s-4", "type": "textbox" },
+                { "id": 22042285, "nama": "m-4", "type": "textbox" },
+                { "id": 22042286, "nama": "p-5", "type": "textbox" },
+                { "id": 22042287, "nama": "si-5", "type": "textbox"},
+                { "id": 22042288, "nama": "s-5", "type": "textbox" },
+                { "id": 22042289, "nama": "m-5", "type": "textbox" },
+                { "id": 22042290, "nama": "p-6", "type": "textbox" },
+                { "id": 22042291, "nama": "si-6", "type": "textbox"},
+                { "id": 22042292, "nama": "s-6", "type": "textbox" },
+                { "id": 22042293, "nama": "m-6", "type": "textbox" },
+                { "id": 22042294, "nama": "p-7", "type": "textbox" },
+                { "id": 22042295, "nama": "si-7", "type": "textbox"},
+                { "id": 22042296, "nama": "s-7", "type": "textbox" },
+                { "id": 22042297, "nama": "m-7", "type": "textbox" },
+            ]
+
+            $scope.listNadi = [
+                { "id": 22042298, "nama": "p-1", "type": "textbox" },
+                { "id": 22042299, "nama": "si-1", "type": "textbox"},
+                { "id": 22042300, "nama": "s-1", "type": "textbox" },
+                { "id": 22042301, "nama": "m-1", "type": "textbox" },
+                { "id": 22042302, "nama": "p-2", "type": "textbox" },
+                { "id": 22042303, "nama": "si-2", "type": "textbox"},
+                { "id": 22042304, "nama": "s-2", "type": "textbox" },
+                { "id": 22042305, "nama": "m-2", "type": "textbox" },
+                { "id": 22042306, "nama": "p-3", "type": "textbox" },
+                { "id": 22042307, "nama": "si-3", "type": "textbox"},
+                { "id": 22042308, "nama": "s-3", "type": "textbox" },
+                { "id": 22042309, "nama": "m-3", "type": "textbox" },
+                { "id": 22042310, "nama": "p-4", "type": "textbox" },
+                { "id": 22042311, "nama": "si-4", "type": "textbox"},
+                { "id": 22042312, "nama": "s-4", "type": "textbox" },
+                { "id": 22042313, "nama": "m-4", "type": "textbox" },
+                { "id": 22042314, "nama": "p-5", "type": "textbox" },
+                { "id": 22042315, "nama": "si-5", "type": "textbox"},
+                { "id": 22042316, "nama": "s-5", "type": "textbox" },
+                { "id": 22042317, "nama": "m-5", "type": "textbox" },
+                { "id": 22042318, "nama": "p-6", "type": "textbox" },
+                { "id": 22042319, "nama": "si-6", "type": "textbox"},
+                { "id": 22042320, "nama": "s-6", "type": "textbox" },
+                { "id": 22042321, "nama": "m-6", "type": "textbox" },
+                { "id": 22042322, "nama": "p-7", "type": "textbox" },
+                { "id": 22042323, "nama": "si-7", "type": "textbox"},
+                { "id": 22042324, "nama": "s-7", "type": "textbox" },
+                { "id": 22042325, "nama": "m-7", "type": "textbox" },
+            ]
+
+            $scope.listNafas = [
+                { "id": 22042326, "nama": "p-1", "type": "textbox" },
+                { "id": 22042327, "nama": "si-1", "type": "textbox"},
+                { "id": 22042328, "nama": "s-1", "type": "textbox" },
+                { "id": 22042329, "nama": "m-1", "type": "textbox" },
+                { "id": 22042330, "nama": "p-2", "type": "textbox" },
+                { "id": 22042331, "nama": "si-2", "type": "textbox"},
+                { "id": 22042332, "nama": "s-2", "type": "textbox" },
+                { "id": 22042333, "nama": "m-2", "type": "textbox" },
+                { "id": 22042334, "nama": "p-3", "type": "textbox" },
+                { "id": 22042335, "nama": "si-3", "type": "textbox"},
+                { "id": 22042336, "nama": "s-3", "type": "textbox" },
+                { "id": 22042337, "nama": "m-3", "type": "textbox" },
+                { "id": 22042338, "nama": "p-4", "type": "textbox" },
+                { "id": 22042339, "nama": "si-4", "type": "textbox"},
+                { "id": 22042340, "nama": "s-4", "type": "textbox" },
+                { "id": 22042341, "nama": "m-4", "type": "textbox" },
+                { "id": 22042342, "nama": "p-5", "type": "textbox" },
+                { "id": 22042343, "nama": "si-5", "type": "textbox"},
+                { "id": 22042344, "nama": "s-5", "type": "textbox" },
+                { "id": 22042345, "nama": "m-5", "type": "textbox" },
+                { "id": 22042346, "nama": "p-6", "type": "textbox" },
+                { "id": 22042347, "nama": "si-6", "type": "textbox"},
+                { "id": 22042348, "nama": "s-6", "type": "textbox" },
+                { "id": 22042349, "nama": "m-6", "type": "textbox" },
+                { "id": 22042350, "nama": "p-7", "type": "textbox" },
+                { "id": 22042351, "nama": "si-7", "type": "textbox"},
+                { "id": 22042352, "nama": "s-7", "type": "textbox" },
+                { "id": 22042353, "nama": "m-7", "type": "textbox" },
+            ]
+
+            $scope.listSuhu = [
+                { "id": 22042354, "nama": "p-1", "type": "textbox" },
+                { "id": 22042355, "nama": "si-1", "type": "textbox"},
+                { "id": 22042356, "nama": "s-1", "type": "textbox" },
+                { "id": 22042357, "nama": "m-1", "type": "textbox" },
+                { "id": 22042358, "nama": "p-2", "type": "textbox" },
+                { "id": 22042359, "nama": "si-2", "type": "textbox"},
+                { "id": 22042360, "nama": "s-2", "type": "textbox" },
+                { "id": 22042361, "nama": "m-2", "type": "textbox" },
+                { "id": 22042362, "nama": "p-3", "type": "textbox" },
+                { "id": 22042363, "nama": "si-3", "type": "textbox"},
+                { "id": 22042364, "nama": "s-3", "type": "textbox" },
+                { "id": 22042365, "nama": "m-3", "type": "textbox" },
+                { "id": 22042366, "nama": "p-4", "type": "textbox" },
+                { "id": 22042367, "nama": "si-4", "type": "textbox"},
+                { "id": 22042368, "nama": "s-4", "type": "textbox" },
+                { "id": 22042369, "nama": "m-4", "type": "textbox" },
+                { "id": 22042370, "nama": "p-5", "type": "textbox" },
+                { "id": 22042371, "nama": "si-5", "type": "textbox"},
+                { "id": 22042372, "nama": "s-5", "type": "textbox" },
+                { "id": 22042373, "nama": "m-5", "type": "textbox" },
+                { "id": 22042374, "nama": "p-6", "type": "textbox" },
+                { "id": 22042375, "nama": "si-6", "type": "textbox"},
+                { "id": 22042376, "nama": "s-6", "type": "textbox" },
+                { "id": 22042377, "nama": "m-6", "type": "textbox" },
+                { "id": 22042378, "nama": "p-7", "type": "textbox" },
+                { "id": 22042379, "nama": "si-7", "type": "textbox"},
+                { "id": 22042380, "nama": "s-7", "type": "textbox" },
+                { "id": 22042381, "nama": "m-7", "type": "textbox" },
+            ]
+
+            $scope.listSpO2 = [
+                { "id": 22042382, "nama": "p-1", "type": "textbox" },
+                { "id": 22042383, "nama": "si-1", "type": "textbox"},
+                { "id": 22042384, "nama": "s-1", "type": "textbox" },
+                { "id": 22042385, "nama": "m-1", "type": "textbox" },
+                { "id": 22042386, "nama": "p-2", "type": "textbox" },
+                { "id": 22042387, "nama": "si-2", "type": "textbox"},
+                { "id": 22042388, "nama": "s-2", "type": "textbox" },
+                { "id": 22042389, "nama": "m-2", "type": "textbox" },
+                { "id": 22042390, "nama": "p-3", "type": "textbox" },
+                { "id": 22042391, "nama": "si-3", "type": "textbox"},
+                { "id": 22042392, "nama": "s-3", "type": "textbox" },
+                { "id": 22042393, "nama": "m-3", "type": "textbox" },
+                { "id": 22042394, "nama": "p-4", "type": "textbox" },
+                { "id": 22042395, "nama": "si-4", "type": "textbox"},
+                { "id": 22042396, "nama": "s-4", "type": "textbox" },
+                { "id": 22042397, "nama": "m-4", "type": "textbox" },
+                { "id": 22042398, "nama": "p-5", "type": "textbox" },
+                { "id": 22042399, "nama": "si-5", "type": "textbox"},
+                { "id": 22042400, "nama": "s-5", "type": "textbox" },
+                { "id": 22042401, "nama": "m-5", "type": "textbox" },
+                { "id": 22042402, "nama": "p-6", "type": "textbox" },
+                { "id": 22042403, "nama": "si-6", "type": "textbox"},
+                { "id": 22042404, "nama": "s-6", "type": "textbox" },
+                { "id": 22042405, "nama": "m-6", "type": "textbox" },
+                { "id": 22042406, "nama": "p-7", "type": "textbox" },
+                { "id": 22042407, "nama": "si-7", "type": "textbox"},
+                { "id": 22042408, "nama": "s-7", "type": "textbox" },
+                { "id": 22042409, "nama": "m-7", "type": "textbox" },
+            ]
+            
+            // onloadchart()
+
+            var chacePeriode = cacheHelper.get('cacheRekamMedis');
+            if (chacePeriode != undefined) {
+                $scope.cc.nocm = chacePeriode[0]
+                $scope.cc.namapasien = chacePeriode[1]
+                $scope.cc.jeniskelamin = chacePeriode[2]
+                $scope.cc.noregistrasi = chacePeriode[3]
+                $scope.cc.umur = chacePeriode[4]
+                $scope.cc.kelompokpasien = chacePeriode[5]
+                $scope.cc.tglregistrasi = chacePeriode[6]
+                $scope.cc.norec = chacePeriode[7]
+                $scope.cc.norec_pd = chacePeriode[8]
+                $scope.cc.objectkelasfk = chacePeriode[9]
+                $scope.cc.namakelas = chacePeriode[10]
+                $scope.cc.objectruanganfk = chacePeriode[11]
+                $scope.cc.namaruangan = chacePeriode[12]
+                $scope.cc.DataNoregis = chacePeriode[12]
+                if (nomorEMR == '-') {
+                    $scope.cc.norec_emr = '-'
+                } else {
+                    $scope.cc.norec_emr = nomorEMR
+                }
+            }
+            var chekedd = false
+
+            medifirstService.get("emr/get-emr-transaksi-detail?noemr=" + nomorEMR + "&emrfk=" + $scope.cc.emrfk, true).then(function (dat) {
+                $scope.item.obj = []
+                $scope.item.obj2 = []
+                dataLoad = dat.data.data
+                for (var i = 0; i <= dataLoad.length - 1; i++) {
+                    if (parseFloat($scope.cc.emrfk) == dataLoad[i].emrfk) {
+
+                        if (dataLoad[i].type == "textbox") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                        }
+                        if (dataLoad[i].type == "checkbox") {
+                            chekedd = false
+                            if (dataLoad[i].value == '1') {
+                                chekedd = true
+                            }
+                            $scope.item.obj[dataLoad[i].emrdfk] = chekedd
+                        }
+
+                        if (dataLoad[i].type == "datetime") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                        }
+                        if (dataLoad[i].type == "time") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                        }
+                        if (dataLoad[i].type == "date") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = new Date(dataLoad[i].value)
+                        }
+
+                        if (dataLoad[i].type == "checkboxtextbox") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                            $scope.item.obj2[dataLoad[i].emrdfk] = true
+                        }
+                        if (dataLoad[i].type == "textarea") {
+                            $scope.item.obj[dataLoad[i].emrdfk] = dataLoad[i].value
+                        }
+                        if (dataLoad[i].type == "combobox") {
+                            var str = dataLoad[i].value
+                            var res = str.split("~");
+                            // $scope.item.objcbo[dataLoad[i].emrdfk]= {value:res[0],text:res[1]}
+                            $scope.item.obj[dataLoad[i].emrdfk] = { value: res[0], text: res[1] }
+
+                        }
+
+
+                    }
+
+                }
+                onloadchart()
+            })
+            function onloadchart(){
+                // var arrobj = Object.keys($scope.item.obj)
+
+                // for (var i = arrobj.length - 1; i >= 0; i--) {
+                    for (let y = 0; y < 28; y++) {
+                        // if (arrobj[i] == 25028 + y)
+                        //     seriesDarah[y] = $scope.item.obj[parseFloat(arrobj[i])]
+                        var item = $scope.listDarah[y]['id'];
+                        seriesDarah[y] = $scope.item.obj[parseFloat(item)]
+                    }
+                
+                // for (var i = arrobj.length - 1; i >= 0; i--) {
+                    for (let y = 0; y < 28; y++) {
+                        // if (arrobj[i] == 25028 + y)
+                        //     seriesNadi[y] = $scope.item.obj[parseFloat(arrobj[i])]
+                        var item = $scope.listNadi[y]['id'];
+                        seriesNadi[y] = $scope.item.obj[parseFloat(item)]
+                    }
+
+                // for (var i = arrobj.length - 1; i >= 0; i--) {
+                   for (let y = 0; y < 28; y++) {
+                       // if (arrobj[i] == 25028 + y)
+                       //     sesiesPernafasan[y] = $scope.item.obj[parseFloat(arrobj[i])]
+                       var item = $scope.listNafas[y]['id'];
+                       sesiesPernafasan[y] = $scope.item.obj[parseFloat(item)]
+                   }
+
+                // for (var i = arrobj.length - 1; i >= 0; i--) {
+                    for (let z = 0; z < 28; z++) {
+                        // if (arrobj[i] == 25000 + z)
+                        //     sesiesSuhu[z] = $scope.item.obj[parseFloat(arrobj[i])]
+                        var item = $scope.listSuhu[z]['id'];
+                        sesiesSuhu[z] = $scope.item.obj[parseFloat(item)]
+                    }
+
+                // for (var i = arrobj.length - 1; i >= 0; i--) {
+                   for (let z = 0; z < 28; z++) {
+                       // if (arrobj[i] == 25000 + z)
+                       //     sesiesSpO2[z] = $scope.item.obj[parseFloat(arrobj[i])]
+                       var item = $scope.listSpO2[z]['id'];
+                       sesiesSpO2[z] = $scope.item.obj[parseFloat(item)]
+                   }
+
+                // }
+
+                // }
+
+                for (let x = 0; x < seriesDarah.length; x++) {
+                    if (!isNaN(parseInt(seriesDarah[x])))
+                        seriesDarah[x] = parseInt(seriesDarah[x])
+                    else
+                        seriesDarah[x] = null
+                }
+
+                for (let x = 0; x < seriesNadi.length; x++) {
+                    if (!isNaN(parseInt(seriesNadi[x])))
+                        seriesNadi[x] = parseInt(seriesNadi[x])
+                    else
+                        seriesNadi[x] = null
+                }
+
+                for (let x = 0; x < sesiesPernafasan.length; x++) {
+                    if (!isNaN(parseInt(sesiesPernafasan[x])))
+                        sesiesPernafasan[x] = parseInt(sesiesPernafasan[x])
+                    else
+                        sesiesPernafasan[x] = null
+                }
+
+                for (let x = 0; x < sesiesSuhu.length; x++) {
+
+                    if (!isNaN(parseFloat(sesiesSuhu[x])))
+                        sesiesSuhu[x] = parseFloat(sesiesSuhu[x])
+                    else
+                        sesiesSuhu[x] = null
+                }
+
+                for (let x = 0; x < sesiesSpO2.length; x++) {
+
+                    if (!isNaN(parseFloat(sesiesSpO2[x])))
+                        sesiesSpO2[x] = parseFloat(sesiesSpO2[x])
+                    else
+                        sesiesSpO2[x] = null
+                }
+
+                loadChart()
+                console.log(seriesDarah)
+                console.log(seriesNadi)
+                console.log(sesiesPernafasan)
+                console.log(sesiesSuhu)
+                console.log(sesiesSpO2)
+            }
+
+            $scope.Batal = function () {
+                $scope.item.obj = []
+            }
+            $scope.kembali = function () {
+                $rootScope.showRiwayat()
+            }
+
+            $scope.Save = function () {
+
+                var arrobj = Object.keys($scope.item.obj)
+                var arrSave = []
+                for (var i = arrobj.length - 1; i >= 0; i--) {
+                    arrSave.push({ id: arrobj[i], values: $scope.item.obj[parseInt(arrobj[i])] })
+                }
+                $scope.cc.jenisemr = 'asesmen'
+                var jsonSave = {
+                    head: $scope.cc,
+                    data: arrSave
+                }
+                medifirstService.post('emr/save-emr-dinamis', jsonSave).then(function (e) {
+
+                    medifirstService.postLogging('EMR', 'norec emrpasien_t', e.data.data.norec,
+                    'Early Warning Score' + ' dengan No EMR - ' + e.data.data.noemr + ' pada No Registrasi '
+                    + $scope.cc.noregistrasi).then(function (res) {
+                    })
+                    var arrobj = Object.keys($scope.item.obj)
+
+                    // for (var i = arrobj.length - 1; i >= 0; i--) {
+                        for (let z = 0; z < 28; z++) {
+                            // if (arrobj[i] == 25000 + z)
+                            //     seriesDarah[z] = $scope.item.obj[parseFloat(arrobj[i])]
+                            var item = $scope.listDarah[z]['id'];
+                            seriesDarah[z] = $scope.item.obj[parseFloat(item)]
+                        }
+                        for (let z = 0; z < 28; z++) {
+                            // if (arrobj[i] == 25028 + z)
+                            //     seriesNadi[z] = $scope.item.obj[parseFloat(arrobj[i])]
+                            var item = $scope.listNadi[z]['id'];
+                            seriesNadi[z] = $scope.item.obj[parseFloat(item)]
+                        }
+                        for (let z = 0; z < 28; z++) {
+                            // if (arrobj[i] == 25000 + z)
+                            //     sesiesPernafasan[z] = $scope.item.obj[parseFloat(arrobj[i])]
+                            var item = $scope.listNafas[z]['id'];
+                            sesiesPernafasan[z] = $scope.item.obj[parseFloat(item)]
+                        }
+                        for (let z = 0; z < 28; z++) {
+                            // if (arrobj[i] == 25000 + z)
+                            //     sesiesSuhu[z] = $scope.item.obj[parseFloat(arrobj[i])]
+                            var item = $scope.listSuhu[z]['id'];
+                            sesiesSuhu[z] = $scope.item.obj[parseFloat(item)]
+                        }
+                        for (let z = 0; z < 28; z++) {
+                            // if (arrobj[i] == 25000 + z)
+                            //     sesiesSpO2[z] = $scope.item.obj[parseFloat(arrobj[i])]
+                            var item = $scope.listSpO2[z]['id'];
+                            sesiesSpO2[z] = $scope.item.obj[parseFloat(item)]
+                        }
+                    // }
+
+                        for (let x = 0; x < seriesDarah.length; x++) {
+                            if (!isNaN(parseFloat(seriesDarah[x])))
+                                seriesDarah[x] = parseFloat(seriesDarah[x])
+                            else
+                                seriesDarah[x] = null
+                        }
+                        for (let x = 0; x < seriesNadi.length; x++) {
+                            if (!isNaN(parseInt(seriesNadi[x])))
+                                seriesNadi[x] = parseInt(seriesNadi[x])
+                            else    
+                                seriesNadi[x] = null
+                        }
+                        for (let x = 0; x < sesiesPernafasan.length; x++) {
+                            if (!isNaN(parseInt(sesiesPernafasan[x])))
+                                sesiesPernafasan[x] = parseInt(sesiesPernafasan[x])
+                            else    
+                                sesiesPernafasan[x] = null
+                        }
+                        for (let x = 0; x < sesiesSuhu.length; x++) {
+                            if (!isNaN(parseFloat(sesiesSuhu[x])))
+                                sesiesSuhu[x] = parseFloat(sesiesSuhu[x])
+                            else
+                                sesiesSuhu[x] = null
+                        }
+                        for (let x = 0; x < sesiesSpO2.length; x++) {
+                            if (!isNaN(parseFloat(sesiesSpO2[x])))
+                                sesiesSpO2[x] = parseFloat(sesiesSpO2[x])
+                            else
+                                sesiesSpO2[x] = null
+                        }
+
+                    loadChart()
+                    $rootScope.loadRiwayat()
+                    var arrStr = {
+                        0: e.data.data.noemr
+                    }
+                    cacheHelper.set('cacheNomorEMR', arrStr);
+                });
+            }
+
+        }
+    ]);
+});
